@@ -1,6 +1,8 @@
 // Settings
-const reactions = ["👍", "👎"];
+const reactionsArray = ["👍", "👎"];
 const rolePrison = "Prison";
+const prisonTime = 0.2;
+const requiredVotings = 2;
 
 // Loaders require
 const Discord = require('discord.js');
@@ -38,13 +40,7 @@ bot.on('message', message => {
                         message.channel.send(`Vous devez mentionner quelqu'un de ce salon, pardi !`);
                     } else {
 
-                        /*message.channel.send(`🔔 **Appel au jury** !
-                                Faut-il mettre ${votedUser} en prison pendant 30 minutes ?
-                                **Au bûcher !** Pour voter oui, réagissez avec 👍
-                                **Tentative de baise** Pour voter non, réagissez avec 👎`
-                        )*/
-
-                        message.channel.send({embed :{
+                        /*message.channel.send({embed :{
                             color: 3447003,
                             title: `🔔 **Appel au jury** !`,
                             fields: [
@@ -52,8 +48,14 @@ bot.on('message', message => {
                                 { name: "Pendez-le !", value: "Pour voter oui, réagissez avec 👍" },
                                 { name: "Tentative de baise", value: "Pour voter non, réagissez avec 👎" }
                             ]
-                        }}).then(message => {
-                            for (let r of reactions) {
+                        }}*/
+
+                        message.channel.send(`🔔 **Appel au jury** !
+                            Faut-il mettre ${votedUser} en prison pendant 30 minutes ?
+                            **Au bûcher !** : pour voter oui, réagissez avec 👍
+                            **Tentative de baise** : pour voter non, réagissez avec 👎`
+                        ).then(message => {
+                            for (let r of reactionsArray) {
                                 message.react(r);
                             }
                         });
@@ -66,36 +68,47 @@ bot.on('message', message => {
 
 bot.on('raw', event => {
     if (event.t === 'MESSAGE_REACTION_ADD' || event.t === "MESSAGE_REACTION_REMOVE") {
-
         let channel = bot.channels.get(event.d.channel_id);
         let message = channel.fetchMessage(event.d.message_id).then(msg=> {
 
-            const filterThumbs = (reaction) => reactions.includes(reaction.emoji.name);
+            const filterThumbs = (reaction) => reactionsArray.includes(reaction.emoji.name);
 
             // Check que les mentions des messages émis par le bot uniquement
             if (msg.author.id === bot.user.id) {
 
                 // @TODO Marche pas putaiiin
-                // logger.info(msg.mentions.users);
-                // logger.info(msg.reactions);
+                let votedUser = msg.mentions.users.first();
+                let countThumbsUp = msg.reactions.filter((reaction) => reactionsArray[0] === reaction.emoji.name).map(
+                    reaction => reaction.count)[0];
+                let countThumbsDown = msg.reactions.filter((reaction) => reactionsArray[1] === reaction.emoji.name).map(
+                    reaction => reaction.count)[0];
 
                 // Check de pas prison le bot
-                let votedUser = msg.mentions.users.first();
                 if (votedUser.id !== bot.user.id) {
 
                     // @TODO : si le compte de 👍 est de minimum 5
-                    if (false) {
-                        msg.guild.members.get(votedUser.id).addRole(msg.guild.roles.find(rolePrison));
-                        channel.send(`${votedUser} a été banni. Alleluïa !`);
+                    if (countThumbsUp >= requiredVotings) {
+                        msg.guild.members.get(votedUser.id).addRole(msg.guild.roles.find(x => x.name === rolePrison)).then(
+                            () => {
+                                setTimeout(() => {
+                                    msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison))
+                                }, prisonTime*60000).then(() => {
+                                    channel.send(`${votedUser} est sorti de prison. Attention à vos yeux.`);
+                                });
+                            }
+                        );
+                        channel.send(`${votedUser} a été banni. Alleluïa !`).then(() => {
+                            //@TODO delete message d'origine
+                            // channel.fetchMessage(event.d.message_id).delete();
+                        });
                     }
 
                     // @TODO : si le compte de 👎 est de minimum 5, delete le message et
-                    //message.delete().then(() => {
-                    //channel.send(`${votedUser} a été gracié.`)}));
-
-                    //@TODO : if ça fait + de 15 minutes, auto delete le message et
-                    //message.delete().then(() => {
-                    //channel.send(`${votedUser} a été gracié.`)}));
+                    if (countThumbsDown >= requiredVotings) {
+                        // message.delete().then(() => {
+                        //     channel.send(`${votedUser} a été gracié.`)
+                        // });
+                    }
 
                 }
             }
@@ -103,4 +116,6 @@ bot.on('raw', event => {
     }
 });
 
-//@TODO : remove le role Prison au bout de 30 minutes
+//@TODO : if ça fait + de 15 minutes, auto delete le message et
+//message.delete().then(() => {
+//channel.send(`${votedUser} a été gracié.`)});
