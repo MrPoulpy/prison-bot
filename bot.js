@@ -1,8 +1,8 @@
 // Settings
 const reactionsArray = ["👍", "👎"];
 const rolePrison = "Prison";
-const prisonTime = 0.2;
-const requiredVotings = 2;
+const prisonTime = 30; // temps en minutes
+const requiredVotings = 5; // nombre de votes nécessaires
 
 // Loaders require
 const Discord = require('discord.js');
