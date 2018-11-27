@@ -51,7 +51,7 @@ bot.on('message', message => {
                             ]
                         }}*/
 
-                        message.channel.send(`🔔 **Appel au jury** !
+                        message.channel.send(`@everyone : 🔔 **Appel au jury** !
                         Faut-il mettre ${votedUser} en prison pendant `+prisonTime+` minutes ?
                         `+requiredVotings+` votes sont nécessaires
                         **Au bûcher !** : pour voter oui, réagissez avec 👍
