@@ -1,8 +1,9 @@
 // Settings
 const reactionsArray = ["👍", "👎"];
 const rolePrison = "Prison";
-const prisonTime = 30; // temps en minutes
-const requiredVotings = 5; // nombre de votes nécessaires
+const defaultPrisonTime = 30; // temps en minutes
+const requiredVotings = 2; // nombre de votes nécessaires
+const re_duree = /pendant (?<duree>\d+) minutes/;
 
 // Loaders require
 const Discord = require('discord.js');
@@ -32,8 +33,6 @@ bot.on('message', message => {
             case 'prison':
                 if (args.length === 0) {
                     message.channel.send('Vous devez mentionner un utilisateur à mettre en prison.');
-                } else if (args.length > 1) {
-                    message.channel.send('Vous ne devez voter que pour un seul détenu à la fois.');
                 } else {
                     let votedUser = message.mentions.users.first();
                     if (votedUser === undefined) {
@@ -51,11 +50,14 @@ bot.on('message', message => {
                             ]
                         }}*/
 
+                        let prisonTime = args[1] != null ? parseInt(args[1]) : defaultPrisonTime;
+                        prisonTime = (prisonTime > 180) ? 180 : prisonTime;
+
                         message.channel.send(`@everyone : 🔔 **Appel au jury** !
                         Faut-il mettre ${votedUser} en prison pendant `+prisonTime+` minutes ?
                         `+requiredVotings+` votes sont nécessaires.
-                        **Au bûcher !** : pour voter oui, réagissez avec 👍
-                        **Tentative de baise** : pour voter non, réagissez avec 👎`
+                        **Au bûcher !** : pour voter oui, réagissez avec 👍,
+                        **Tentative de baise** : pour voter non, réagissez avec 👎.`
                         ).then(message => {
                             for (let r of reactionsArray) {
                                 message.react(r);
@@ -89,15 +91,21 @@ bot.on('raw', event => {
                     if (countThumbsUp >= requiredVotings) {
                         msg.guild.members.get(votedUser.id).addRole(msg.guild.roles.find(x => x.name === rolePrison)).then(
                             () => {
-                                setTimeout(() => {
-                                    msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison)).then(() => {
-                                        channel.send(`***@everyone*** : ${votedUser} est sorti de prison. Attention à vos yeux.`);
-                                    });
-                                }, prisonTime*60000);
+                                // récup de la durée du ban
+                                channel.fetchMessage(event.d.message_id).then(mg => {
 
-                                channel.send(`***@everyone*** : ${votedUser} a été banni. Alleluïa !`).then(() => {
-                                    channel.fetchMessage(event.d.message_id).then(mg => {
-                                        mg.delete();
+                                    let prisonTime = re_duree.exec(mg.content) !== undefined ? re_duree.exec(mg.content).groups.duree : defaultPrisonTime;
+
+                                    setTimeout(() => {
+                                        msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison)).then(() => {
+                                            channel.send(`***@everyone*** : ${votedUser} est sorti de prison. Attention à vos yeux.`);
+                                        });
+                                    }, prisonTime*60000);
+
+                                    channel.send(`***@everyone*** : ${votedUser} a été banni `+prisonTime+` minutes. Alleluïa !`).then(() => {
+                                        channel.fetchMessage(event.d.message_id).then(mg => {
+                                            mg.delete();
+                                        });
                                     });
                                 });
                             }
