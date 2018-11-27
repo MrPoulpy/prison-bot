@@ -52,9 +52,10 @@ bot.on('message', message => {
                         }}*/
 
                         message.channel.send(`🔔 **Appel au jury** !
-                            Faut-il mettre ${votedUser} en prison pendant 30 minutes ?
-                            **Au bûcher !** : pour voter oui, réagissez avec 👍
-                            **Tentative de baise** : pour voter non, réagissez avec 👎`
+                        Faut-il mettre ${votedUser} en prison pendant `+prisonTime+` minutes ?
+                        `+requiredVotings+` votes sont nécessaires
+                        **Au bûcher !** : pour voter oui, réagissez avec 👍
+                        **Tentative de baise** : pour voter non, réagissez avec 👎`
                         ).then(message => {
                             for (let r of reactionsArray) {
                                 message.react(r);
