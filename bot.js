@@ -2,7 +2,7 @@
 const reactionsArray = ["👍", "👎"];
 const rolePrison = "Prison";
 const defaultPrisonTime = 30; // temps en minutes
-const requiredVotings = 2; // nombre de votes nécessaires
+const requiredVotings = 5; // nombre de votes nécessaires
 const re_duree = /pendant (?<duree>\d+) minutes/;
 
 // Loaders require
