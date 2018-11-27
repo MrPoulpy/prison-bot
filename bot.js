@@ -2,7 +2,7 @@
 const reactionsArray = ["👍", "👎"];
 const rolePrison = "Prison";
 const prisonTime = 30; // temps en minutes
-const requiredVotings = 5; // nombre de votes nécessaires
+const requiredVotings = 4; // nombre de votes nécessaires
 
 // Loaders require
 const Discord = require('discord.js');
@@ -53,7 +53,7 @@ bot.on('message', message => {
 
                         message.channel.send(`@everyone : 🔔 **Appel au jury** !
                         Faut-il mettre ${votedUser} en prison pendant `+prisonTime+` minutes ?
-                        `+requiredVotings+` votes sont nécessaires
+                        `+requiredVotings+` votes sont nécessaires.
                         **Au bûcher !** : pour voter oui, réagissez avec 👍
                         **Tentative de baise** : pour voter non, réagissez avec 👎`
                         ).then(message => {
