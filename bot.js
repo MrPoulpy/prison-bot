@@ -2,7 +2,7 @@
 const reactionsArray = ["👍", "👎"];
 const rolePrison = "Prison";
 const prisonTime = 30; // temps en minutes
-const requiredVotings = 4; // nombre de votes nécessaires
+const requiredVotings = 5; // nombre de votes nécessaires
 
 // Loaders require
 const Discord = require('discord.js');
@@ -108,7 +108,7 @@ bot.on('raw', event => {
                     if (countThumbsDown >= requiredVotings) {
                         channel.fetchMessage(event.d.message_id).then(mg => {
                             mg.delete().then(() => {
-                                channel.send(`***@everyone*** : ${votedUser} a été gracié.`);
+                                channel.send(`***@everyone*** : ${votedUser} a été gracié(e).`);
                             });
                         });
                     }
