@@ -90,11 +90,11 @@ bot.on('raw', event => {
                             () => {
                                 setTimeout(() => {
                                     msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison)).then(() => {
-                                        channel.send(`${votedUser} est sorti de prison. Attention à vos yeux.`);
+                                        channel.send(`***@everyone*** : ${votedUser} est sorti de prison. Attention à vos yeux.`);
                                     });
                                 }, prisonTime*60000);
 
-                                channel.send(`${votedUser} a été banni. Alleluïa !`).then(() => {
+                                channel.send(`***@everyone*** : ${votedUser} a été banni. Alleluïa !`).then(() => {
                                     channel.fetchMessage(event.d.message_id).then(mg => {
                                         mg.delete();
                                     });
@@ -107,7 +107,7 @@ bot.on('raw', event => {
                     if (countThumbsDown >= requiredVotings) {
                         channel.fetchMessage(event.d.message_id).then(mg => {
                             mg.delete().then(() => {
-                                channel.send(`${votedUser} a été gracié.`);
+                                channel.send(`***@everyone*** : ${votedUser} a été gracié.`);
                             });
                         });
                     }
