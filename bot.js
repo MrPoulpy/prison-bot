@@ -40,6 +40,7 @@ bot.on('message', message => {
                         message.channel.send(`Vous devez mentionner quelqu'un de ce salon, pardi !`);
                     } else {
 
+                        // Impossible de récupérer les mentions sur les embed :/
                         /*message.channel.send({embed :{
                             color: 3447003,
                             title: `🔔 **Appel au jury** !`,
@@ -69,14 +70,11 @@ bot.on('message', message => {
 bot.on('raw', event => {
     if (event.t === 'MESSAGE_REACTION_ADD' || event.t === "MESSAGE_REACTION_REMOVE") {
         let channel = bot.channels.get(event.d.channel_id);
-        let message = channel.fetchMessage(event.d.message_id).then(msg=> {
-
-            const filterThumbs = (reaction) => reactionsArray.includes(reaction.emoji.name);
+        let message = channel.fetchMessage(event.d.message_id).then(msg => {
 
             // Check que les mentions des messages émis par le bot uniquement
             if (msg.author.id === bot.user.id) {
 
-                // @TODO Marche pas putaiiin
                 let votedUser = msg.mentions.users.first();
                 let countThumbsUp = msg.reactions.filter((reaction) => reactionsArray[0] === reaction.emoji.name).map(
                     reaction => reaction.count)[0];
@@ -86,36 +84,37 @@ bot.on('raw', event => {
                 // Check de pas prison le bot
                 if (votedUser.id !== bot.user.id) {
 
-                    // @TODO : si le compte de 👍 est de minimum 5
+                    // si le compte de 👍 est de minimum 5
                     if (countThumbsUp >= requiredVotings) {
                         msg.guild.members.get(votedUser.id).addRole(msg.guild.roles.find(x => x.name === rolePrison)).then(
                             () => {
                                 setTimeout(() => {
-                                    msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison))
-                                }, prisonTime*60000).then(() => {
-                                    channel.send(`${votedUser} est sorti de prison. Attention à vos yeux.`);
+                                    msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison)).then(() => {
+                                        channel.send(`${votedUser} est sorti de prison. Attention à vos yeux.`);
+                                    });
+                                }, prisonTime*60000);
+
+                                channel.send(`${votedUser} a été banni. Alleluïa !`).then(() => {
+                                    channel.fetchMessage(event.d.message_id).then(mg => {
+                                        mg.delete();
+                                    });
                                 });
                             }
                         );
-                        channel.send(`${votedUser} a été banni. Alleluïa !`).then(() => {
-                            //@TODO delete message d'origine
-                            // channel.fetchMessage(event.d.message_id).delete();
+                    }
+
+                    // si le compte de 👎 est de minimum 5, delete le message
+                    if (countThumbsDown >= requiredVotings) {
+                        channel.fetchMessage(event.d.message_id).then(mg => {
+                            mg.delete().then(() => {
+                                channel.send(`${votedUser} a été gracié.`);
+                            });
                         });
                     }
-
-                    // @TODO : si le compte de 👎 est de minimum 5, delete le message et
-                    if (countThumbsDown >= requiredVotings) {
-                        // message.delete().then(() => {
-                        //     channel.send(`${votedUser} a été gracié.`)
-                        // });
-                    }
-
                 }
             }
         })
     }
 });
 
-//@TODO : if ça fait + de 15 minutes, auto delete le message et
-//message.delete().then(() => {
-//channel.send(`${votedUser} a été gracié.`)});
+//@TODO : créer automatiquement le rôle Prison ?
