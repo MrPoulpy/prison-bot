@@ -81,16 +81,22 @@ bot.on('message', message => {
                     message.channel.send(`Vous devez mentionner un utilisateur à libérer de prison, ${authorMess}.`);
                 } else {
                     let votedUser = message.mentions.users.first();
-                    message.channel.send(`- @everyone : **Appel au jury** !
-                        Faut-il libérer ${votedUser} ?
-                        ` + requiredVotings + ` votes sont nécessaires.
-                        **Désolé !** : pour voter oui, réagissez avec 👍,
-                        **Nique-toi bien !** : pour voter non, réagissez avec 👎.`
-                    ).then(message => {
-                        for (let r of reactionsArray) {
-                            message.react(r);
-                        }
-                    });
+                    if (auth.auth_ids.includes(votedUser.id)) {
+                        message.channel.send(`Le shérif t'as libéré, cowboy ${votedUser} ...`).then((mess) => {
+                            mess.guild.members.get(votedUser.id).removeRole(mess.guild.roles.find(x => x.name === rolePrison));
+                        });
+                    } else {
+                        message.channel.send(`- @everyone : **Appel au jury** !
+                            Faut-il libérer ${votedUser} ?
+                            ` + requiredVotings + ` votes sont nécessaires.
+                            **Désolé !** : pour voter oui, réagissez avec 👍,
+                            **Nique-toi bien !** : pour voter non, réagissez avec 👎.`
+                        ).then(message => {
+                            for (let r of reactionsArray) {
+                                message.react(r);
+                            }
+                        });
+                    }
                 }
                 break;
         }
@@ -124,9 +130,19 @@ bot.on('raw', event => {
                                     let prisonTime = re_duree.exec(mg.content) !== undefined ? re_duree.exec(mg.content).groups.duree : defaultPrisonTime;
 
                                     setTimeout(() => {
-                                        msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison)).then(() => {
-                                            channel.send(`***@everyone*** : ${votedUser} est sorti(e) de prison. Attention à vos yeux.`);
+                                        message.channel.send(`- @everyone : **Appel au jury** !
+                            La peine de ${votedUser} est finie ... Doit-il vraiment sortir ?
+                            ` + requiredVotings + ` votes sont nécessaires.
+                            **Allez... ça va !** : pour voter oui, réagissez avec 👍,
+                            **Non. Nique-toi bien !** : pour voter non, réagissez avec 👎.`
+                                        ).then(message => {
+                                            for (let r of reactionsArray) {
+                                                message.react(r);
+                                            }
                                         });
+                                        /*msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison)).then(() => {
+                                            channel.send(`***@everyone*** : ${votedUser} est sorti(e) de prison. Attention à vos yeux.`);
+                                        });*/
                                     }, prisonTime*60000);
 
                                     channel.send(`***@everyone*** : ${votedUser} a été banni(e) `+prisonTime+` minutes. Alleluïa !`).then(() => {
