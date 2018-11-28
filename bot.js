@@ -49,7 +49,8 @@ bot.on('message', message => {
                             });
                         } else {
                             message.channel.send(`@everyone : 🔔 **Appel au jury** !
-                            ${authorMess} veut mettre ${votedUser} en prison pendant ` + prisonTime + ` minutes !
+                            Faut-il mettre ${votedUser} en prison pendant ` + prisonTime + ` minutes ?  
+                            ${authorMess} pense que oui !
                             ` + requiredVotings + ` votes sont nécessaires.
                             **Au bûcher !** : pour voter oui, réagissez avec 👍,
                             **Tentative de baise** : pour voter non, réagissez avec 👎.`
