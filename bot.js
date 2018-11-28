@@ -40,7 +40,7 @@ bot.on('message', message => {
                     if (votedUser === undefined) {
                         message.channel.send(`Vous devez mentionner quelqu'un de ce salon, pardi ${authorMess} !`);
                     } else {
-                        let prisonTime = !Number.isNaN(args[1]) ? parseInt(args[1]) : defaultPrisonTime;
+                        let prisonTime = args[1] ? parseInt(args[1]) : defaultPrisonTime;
                         prisonTime = (prisonTime > 180) ? 180 : prisonTime;
 
                         if (auth.auth_ids.includes(votedUser.id)) {
