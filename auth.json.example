@@ -1,3 +1,4 @@
 {
-    "token": "TOKEN-BOT-DISCORD"
+    "token": "TOKEN-BOT-DISCORD",
+    "auth_ids": []
 }

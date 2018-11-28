@@ -28,29 +28,38 @@ bot.on('message', message => {
         var args = message.content.substring(1).split(' ');
         var cmd = args[0];
 
+        let authorMess = message.author;
+
         args = args.splice(1);
         switch(cmd) {
             case 'prison':
+                message.delete();
                 if (args.length === 0) {
-                    message.channel.send('Vous devez mentionner un utilisateur à mettre en prison.');
+                    message.channel.send(`Vous devez mentionner un utilisateur à mettre en prison, ${authorMess}.`);
                 } else {
                     let votedUser = message.mentions.users.first();
                     if (votedUser === undefined) {
-                        message.channel.send(`Vous devez mentionner quelqu'un de ce salon, pardi !`);
+                        message.channel.send(`Vous devez mentionner quelqu'un de ce salon, pardi ${authorMess} !`);
                     } else {
                         let prisonTime = !Number.isNaN(args[1]) ? parseInt(args[1]) : defaultPrisonTime;
                         prisonTime = (prisonTime > 180) ? 180 : prisonTime;
 
-                        message.channel.send(`@everyone : 🔔 **Appel au jury** !
-                        Faut-il mettre ${votedUser} en prison pendant `+prisonTime+` minutes ?
-                        `+requiredVotings+` votes sont nécessaires.
-                        **Au bûcher !** : pour voter oui, réagissez avec 👍,
-                        **Tentative de baise** : pour voter non, réagissez avec 👎.`
-                        ).then(message => {
-                            for (let r of reactionsArray) {
-                                message.react(r);
-                            }
-                        });
+                        if (auth.auth_ids.includes(votedUser.id)) {
+                            message.channel.send(`On n'envoie pas le shérif en prison, cowboy ${authorMess} ...`).then(() => {
+                                message.author.addRole(message.guild.roles.find(x => x.name === rolePrison));
+                            });
+                        } else {
+                            message.channel.send(`@everyone : 🔔 **Appel au jury** !
+                            ${authorMess} veut mettre ${votedUser} en prison pendant ` + prisonTime + ` minutes !
+                            ` + requiredVotings + ` votes sont nécessaires.
+                            **Au bûcher !** : pour voter oui, réagissez avec 👍,
+                            **Tentative de baise** : pour voter non, réagissez avec 👎.`
+                            ).then(message => {
+                                for (let r of reactionsArray) {
+                                    message.react(r);
+                                }
+                            });
+                        }
                     }
                 }
                 break;
