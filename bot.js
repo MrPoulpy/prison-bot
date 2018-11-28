@@ -33,7 +33,6 @@ bot.on('message', message => {
         args = args.splice(1);
         switch(cmd) {
             case 'prison':
-                message.delete();
                 if (args.length === 0) {
                     message.channel.send(`Vous devez mentionner un utilisateur à mettre en prison, ${authorMess}.`);
                 } else {
@@ -46,7 +45,7 @@ bot.on('message', message => {
 
                         if (auth.auth_ids.includes(votedUser.id)) {
                             message.channel.send(`On n'envoie pas le shérif en prison, cowboy ${authorMess} ...`).then((mess) => {
-                                mess.guild.members.get(authorMess.id).addRole(message.guild.roles.find(x => x.name === rolePrison));
+                                mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
                             });
                         } else {
                             message.channel.send(`@everyone : 🔔 **Appel au jury** !
