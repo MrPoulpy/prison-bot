@@ -38,19 +38,7 @@ bot.on('message', message => {
                     if (votedUser === undefined) {
                         message.channel.send(`Vous devez mentionner quelqu'un de ce salon, pardi !`);
                     } else {
-
-                        // Impossible de récupérer les mentions sur les embed :/
-                        /*message.channel.send({embed :{
-                            color: 3447003,
-                            title: `🔔 **Appel au jury** !`,
-                            fields: [
-                                { name: "Accusé ! ", value: `Faut-il mettre ${votedUser} en prison pendant 30 minutes ?` },
-                                { name: "Pendez-le !", value: "Pour voter oui, réagissez avec 👍" },
-                                { name: "Tentative de baise", value: "Pour voter non, réagissez avec 👎" }
-                            ]
-                        }}*/
-
-                        let prisonTime = args[1] != null ? parseInt(args[1]) : defaultPrisonTime;
+                        let prisonTime = !Number.isNaN(args[1]) ? parseInt(args[1]) : defaultPrisonTime;
                         prisonTime = (prisonTime > 180) ? 180 : prisonTime;
 
                         message.channel.send(`@everyone : 🔔 **Appel au jury** !
@@ -98,11 +86,11 @@ bot.on('raw', event => {
 
                                     setTimeout(() => {
                                         msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison)).then(() => {
-                                            channel.send(`***@everyone*** : ${votedUser} est sorti de prison. Attention à vos yeux.`);
+                                            channel.send(`***@everyone*** : ${votedUser} est sorti(e) de prison. Attention à vos yeux.`);
                                         });
                                     }, prisonTime*60000);
 
-                                    channel.send(`***@everyone*** : ${votedUser} a été banni `+prisonTime+` minutes. Alleluïa !`).then(() => {
+                                    channel.send(`***@everyone*** : ${votedUser} a été banni(e) `+prisonTime+` minutes. Alleluïa !`).then(() => {
                                         channel.fetchMessage(event.d.message_id).then(mg => {
                                             mg.delete();
                                         });
