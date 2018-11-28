@@ -45,8 +45,8 @@ bot.on('message', message => {
                         prisonTime = (prisonTime > 180) ? 180 : prisonTime;
 
                         if (auth.auth_ids.includes(votedUser.id)) {
-                            message.channel.send(`On n'envoie pas le shérif en prison, cowboy ${authorMess} ...`).then(() => {
-                                message.author.addRole(message.guild.roles.find(x => x.name === rolePrison));
+                            message.channel.send(`On n'envoie pas le shérif en prison, cowboy ${authorMess} ...`).then((mess) => {
+                                mess.guild.members.get(authorMess.id).addRole(message.guild.roles.find(x => x.name === rolePrison));
                             });
                         } else {
                             message.channel.send(`@everyone : 🔔 **Appel au jury** !
