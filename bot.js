@@ -57,24 +57,40 @@ bot.on('message', message => {
                                     });
                                 } else {
                                     data.tries.push(authorMess.id);
-                                    fs.writeFile('tries.json', JSON.stringify(data), 'utf8', () => {
-                                        return true;
-                                    });
-
-                                    message.channel.send(`@everyone : 🔔 **Appel au jury** !
+                                    fs.writeFile('tries.json', JSON.stringify(data), 'utf8', (err, data) => {
+                                        if (err) console.log(err);
+                                        message.channel.send(`@everyone : 🔔 **Appel au jury** !
                         Faut-il mettre ${votedUser} en prison pendant ` + prisonTime + ` minutes ?  
                         ` + requiredVotings + ` votes sont nécessaires.
                         **Au bûcher !** : pour voter oui, réagissez avec 👍,
                         **Tentative de baise** : pour voter non, réagissez avec 👎.`
-                                    ).then(message => {
-                                        for (let r of reactionsArray) {
-                                            message.react(r);
-                                        }
+                                        ).then(message => {
+                                            for (let r of reactionsArray) {
+                                                message.react(r);
+                                            }
+                                        });
                                     });
                                 }
                             });
                         }
                     }
+                }
+                break;
+            case 'free':
+                if (args.length === 0) {
+                    message.channel.send(`Vous devez mentionner un utilisateur à libérer de prison, ${authorMess}.`);
+                } else {
+                    let votedUser = message.mentions.users.first();
+                    message.channel.send(`@everyone : **Appel au jury** !
+                        Faut-il libérer ${votedUser} ?
+                        ` + requiredVotings + ` votes sont nécessaires.
+                        **Désolé !** : pour voter oui, réagissez avec 👍,
+                        **Nique-toi bien !** : pour voter non, réagissez avec 👎.`
+                    ).then(message => {
+                        for (let r of reactionsArray) {
+                            message.react(r);
+                        }
+                    });
                 }
                 break;
         }
@@ -86,8 +102,8 @@ bot.on('raw', event => {
         let channel = bot.channels.get(event.d.channel_id);
         let message = channel.fetchMessage(event.d.message_id).then(msg => {
 
-            // Check que les mentions des messages émis par le bot uniquement
-            if (msg.author.id === bot.user.id) {
+            // Check que les mentions des messages émis par le bot uniquement & qu'il s'agisse d'un voteban
+            if ((msg.author.id === bot.user.id) && (msg.content.substring(0, 13) === "@everyone : 🔔")) {
 
                 let votedUser = msg.mentions.users.first();
                 let countThumbsUp = msg.reactions.filter((reaction) => reactionsArray[0] === reaction.emoji.name).map(
@@ -132,6 +148,8 @@ bot.on('raw', event => {
                         });
                     }
                 }
+            } else if (msg.content.substring(0, 13) === "@everyone : 🔔") {
+                //@TODO : libération
             }
         })
     }
