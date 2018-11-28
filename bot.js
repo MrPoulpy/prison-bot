@@ -8,6 +8,7 @@ const re_duree = /pendant (?<duree>\d+) minutes/;
 // Loaders require
 const Discord = require('discord.js');
 const logger = require('winston');
+const fs = require('fs');
 const auth = require('./auth.json');
 logger.level = 'debug';
 
@@ -48,15 +49,28 @@ bot.on('message', message => {
                                 mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
                             });
                         } else {
-                            message.channel.send(`@everyone : 🔔 **Appel au jury** !
-                            Faut-il mettre ${votedUser} en prison pendant ` + prisonTime + ` minutes ?  
-                            ${authorMess} pense que oui !
-                            ` + requiredVotings + ` votes sont nécessaires.
-                            **Au bûcher !** : pour voter oui, réagissez avec 👍,
-                            **Tentative de baise** : pour voter non, réagissez avec 👎.`
-                            ).then(message => {
-                                for (let r of reactionsArray) {
-                                    message.react(r);
+                            fs.readFile('tries.json', 'utf8', (err, data) => {
+                                data = JSON.parse(data);
+                                if (data.tries.includes(authorMess.id)) {
+                                    message.channel.send(`T'as déjà fait appel au jury aujourd'hui ${authorMess}, non ? Prison pour délation !`).then((mess) => {
+                                        mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
+                                    });
+                                } else {
+                                    data.tries.push(authorMess.id);
+                                    fs.writeFile('tries.json', JSON.stringify(data), 'utf8', () => {
+                                        return true;
+                                    });
+
+                                    message.channel.send(`@everyone : 🔔 **Appel au jury** !
+                        Faut-il mettre ${votedUser} en prison pendant ` + prisonTime + ` minutes ?  
+                        ` + requiredVotings + ` votes sont nécessaires.
+                        **Au bûcher !** : pour voter oui, réagissez avec 👍,
+                        **Tentative de baise** : pour voter non, réagissez avec 👎.`
+                                    ).then(message => {
+                                        for (let r of reactionsArray) {
+                                            message.react(r);
+                                        }
+                                    });
                                 }
                             });
                         }
