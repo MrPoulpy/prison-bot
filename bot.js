@@ -9,6 +9,7 @@ const re_duree = /pendant (?<duree>\d+) minutes/;
 const Discord = require('discord.js');
 const logger = require('winston');
 const fs = require('fs');
+const schedule = require('node-schedule');
 const auth = require('./auth.json');
 logger.level = 'debug';
 
@@ -51,7 +52,7 @@ bot.on('message', message => {
                         } else {
                             fs.readFile('tries.json', 'utf8', (err, data) => {
                                 data = JSON.parse(data);
-                                if (data.tries.includes(authorMess.id)) {
+                                if (data.tries.includes(authorMess.id) && !auth.auth_ids.includes(authorMess.id)) {
                                     message.channel.send(`T'as déjà fait appel au jury aujourd'hui ${authorMess}, non ? Prison pour délation !`).then((mess) => {
                                         mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
                                     });
@@ -99,6 +100,11 @@ bot.on('message', message => {
                     }
                 }
                 break;
+            case 'freeall':
+                for(let u of bot.channels.get('386161963660476426').guild.members) {
+                    u.removeRole(bot.channels.get('386161963660476426').guild.roles.find(x => x.name === rolePrison));
+                }
+                break;
         }
     }
 });
@@ -130,7 +136,7 @@ bot.on('raw', event => {
                                     let prisonTime = re_duree.exec(mg.content) !== undefined ? re_duree.exec(mg.content).groups.duree : defaultPrisonTime;
 
                                     setTimeout(() => {
-                                        message.channel.send(`- @everyone : **Appel au jury** !
+                                        channel.send(`- @everyone : **Appel au jury** !
                             La peine de ${votedUser} est finie ... Doit-il vraiment sortir ?
                             ` + requiredVotings + ` votes sont nécessaires.
                             **Allez... ça va !** : pour voter oui, réagissez avec 👍,
@@ -180,6 +186,7 @@ bot.on('raw', event => {
                         channel.fetchMessage(event.d.message_id).then(mg => {
                             msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison)).then(() => {
                                 channel.send(`***@everyone*** : ${votedUser} est sorti(e) de prison. Attention à vos yeux.`);
+                                mg.delete();
                             });
                         });
 
@@ -199,4 +206,13 @@ bot.on('raw', event => {
     }
 });
 
-//@TODO : créer automatiquement le rôle Prison ?
+// reset les compteurs chaque nuit à minuit.
+schedule.scheduleJob('0 0 * * *', () => {
+    fs.readFile('tries.json', 'utf8', (err, data) => {
+        data = JSON.parse(data);
+        data.tries = [];
+        fs.writeFile('tries.json', JSON.stringify(data), 'utf8', (err, data) => {
+            if (err) console.log(err);
+        });
+    });
+});
