@@ -59,7 +59,7 @@ bot.on('message', message => {
                                     data.tries.push(authorMess.id);
                                     fs.writeFile('tries.json', JSON.stringify(data), 'utf8', (err, data) => {
                                         if (err) console.log(err);
-                                        message.channel.send(`@everyone : 🔔 **Appel au jury** !
+                                        message.channel.send(`+ @everyone : 🔔 **Appel au jury** !
                         Faut-il mettre ${votedUser} en prison pendant ` + prisonTime + ` minutes ?  
                         ` + requiredVotings + ` votes sont nécessaires.
                         **Au bûcher !** : pour voter oui, réagissez avec 👍,
@@ -81,7 +81,7 @@ bot.on('message', message => {
                     message.channel.send(`Vous devez mentionner un utilisateur à libérer de prison, ${authorMess}.`);
                 } else {
                     let votedUser = message.mentions.users.first();
-                    message.channel.send(`@everyone : **Appel au jury** !
+                    message.channel.send(`- @everyone : **Appel au jury** !
                         Faut-il libérer ${votedUser} ?
                         ` + requiredVotings + ` votes sont nécessaires.
                         **Désolé !** : pour voter oui, réagissez avec 👍,
@@ -103,7 +103,7 @@ bot.on('raw', event => {
         let message = channel.fetchMessage(event.d.message_id).then(msg => {
 
             // Check que les mentions des messages émis par le bot uniquement & qu'il s'agisse d'un voteban
-            if ((msg.author.id === bot.user.id) && (msg.content.substring(0, 13) === "@everyone : 🔔")) {
+            if ((msg.author.id === bot.user.id) && (msg.content.substring(0, 1) === "+")) {
 
                 let votedUser = msg.mentions.users.first();
                 let countThumbsUp = msg.reactions.filter((reaction) => reactionsArray[0] === reaction.emoji.name).map(
@@ -148,8 +148,36 @@ bot.on('raw', event => {
                         });
                     }
                 }
-            } else if (msg.content.substring(0, 13) === "@everyone : 🔔") {
-                //@TODO : libération
+            } else if (msg.content.substring(0, 1) === "-") {
+                let votedUser = msg.mentions.users.first();
+                let countThumbsUp = msg.reactions.filter((reaction) => reactionsArray[0] === reaction.emoji.name).map(
+                    reaction => reaction.count)[0];
+                let countThumbsDown = msg.reactions.filter((reaction) => reactionsArray[1] === reaction.emoji.name).map(
+                    reaction => reaction.count)[0];
+
+                // Check de pas prison le bot
+                if (votedUser.id !== bot.user.id) {
+
+                    // si le compte de 👍 est de minimum 5
+                    if (countThumbsUp >= requiredVotings) {
+
+                        channel.fetchMessage(event.d.message_id).then(mg => {
+                            msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison)).then(() => {
+                                channel.send(`***@everyone*** : ${votedUser} est sorti(e) de prison. Attention à vos yeux.`);
+                            });
+                        });
+
+                    }
+
+                    // si le compte de 👎 est de minimum 5, delete le message
+                    if (countThumbsDown >= requiredVotings) {
+                        channel.fetchMessage(event.d.message_id).then(mg => {
+                            mg.delete().then(() => {
+                                channel.send(`***@everyone*** : ${votedUser} reste à croupir en taule.`);
+                            });
+                        });
+                    }
+                }
             }
         })
     }
