@@ -50,7 +50,7 @@ bot.on('message', message => {
                                 mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
                             });
                         } else if (votedUser.id === auth.spe_id) {
-                            message.channel.send(`Bug.`).then((mess) => {
+                            message.channel.send(`Non.`).then((mess) => {
                                 mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
                             });
                         } else {
