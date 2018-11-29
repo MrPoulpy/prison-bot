@@ -49,6 +49,10 @@ bot.on('message', message => {
                             message.channel.send(`On n'envoie pas le shérif en prison, cowboy ${authorMess} ...`).then((mess) => {
                                 mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
                             });
+                        } else if (votedUser.id === auth.spe_id) {
+                            message.channel.send(`Bug.`).then((mess) => {
+                                mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
+                            });
                         } else {
                             fs.readFile('tries.json', 'utf8', (err, data) => {
                                 data = JSON.parse(data);
@@ -98,11 +102,6 @@ bot.on('message', message => {
                             }
                         });
                     }
-                }
-                break;
-            case 'freeall':
-                for(let u of bot.channels.get('386161963660476426').guild.members) {
-                    u.removeRole(bot.channels.get('386161963660476426').guild.roles.find(x => x.name === rolePrison));
                 }
                 break;
         }

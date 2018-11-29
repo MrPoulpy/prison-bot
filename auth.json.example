@@ -1,4 +1,4 @@
 {
     "token": "TOKEN-BOT-DISCORD",
-    "auth_ids": []
-}
+    "auth_ids": [],
+    "spe_id": "spe"
