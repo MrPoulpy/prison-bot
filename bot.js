@@ -26,7 +26,7 @@ bot.on('ready', function(evt) {
 
 bot.on('message', message => {
 
-    if (message.content.toLowerCase().search(/alco+l/g) > -1 && (message.author.id === bot.user.id)) {
+    if (message.content.toLowerCase().search(/alco+l/g) > -1 && (message.author.id !== bot.user.id)) {
         message.channel.send(`ALCOOOL !`).then(mess => {
             mess.react('🍺');
             mess.react('🍻');
