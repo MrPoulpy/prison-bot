@@ -1,4 +1,5 @@
 {
     "token": "TOKEN-BOT-DISCORD",
     "auth_ids": [],
-    "spe_id": "spe"
+    "spe_id": "spe",
+    "channels_id": []
