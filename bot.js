@@ -26,6 +26,17 @@ bot.on('ready', function(evt) {
 
 bot.on('message', message => {
 
+    if (message.content.toLowerCase().indexOf('alcool') > -1) {
+        message.channel.send(`ALCOOOL !`).then(mess => {
+            mess.react('🍺');
+            mess.react('🍻');
+            mess.react('🍸');
+            message.react('🍺');
+            message.react('🍻');
+            message.react('🍸');
+        });
+    }
+
     if (message.content.toLowerCase().substring(0, 1) === '!') {
         var args = message.content.substring(1).split(' ');
         var cmd = args[0];
