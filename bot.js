@@ -11,6 +11,7 @@ const logger = require('winston');
 const fs = require('fs');
 const schedule = require('node-schedule');
 const auth = require('./auth.json');
+const fetch = require('node-fetch');
 logger.level = 'debug';
 
 // Initialisation du Discord bot
@@ -116,9 +117,7 @@ bot.on('message', message => {
                 break;
             case "blague":
                 let randomNumber = Math.floor(Math.random() * 115);
-                fetch("https://bridge.buddyweb.fr/api/blagues/blagues/" + randomNumber).then(blg => {
-                    message.channel.send(blg.blague);
-                });
+                fetch("https://bridge.buddyweb.fr/api/blagues/blagues/" + randomNumber).then(blg => blg.json()).then(b => message.send(b.blague));
                 break;
             case "casino":
                 function randomInt(min, max) {
@@ -131,16 +130,17 @@ bot.on('message', message => {
                 JSON.stringify(slot2);
                 const slot3 = slotOptions[randomInt(0, 8)];
                 JSON.stringify(slot3);
-                const slotMessage = message.channel.send(`**${message.author.username}** lance la machine à sous.`);
-                slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
-                slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
-                slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
-                slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
-                if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
-                    slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
-                } else {
-                    slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
-                }
+                message.channel.send(`**${message.author.username}** lance la machine à sous.`).then(msg => {
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
+                    if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
+                    } else {
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
+                    }
+                });
                 break;
             case "noter":
                 const student = message.guild.members.random();
