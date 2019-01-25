@@ -125,7 +125,7 @@ bot.on('message', message => {
 });
 
 bot.on('raw', event => {
-    if (event.t === 'MESSAGE_REACTION_ADD' || event.t === "MESSAGE_REACTION_REMOVE") {
+    if (event.t === 'MESSAGE_REACTION_ADD') {
         let channel = bot.channels.get(event.d.channel_id);
         let message = channel.fetchMessage(event.d.message_id).then(msg => {
 
