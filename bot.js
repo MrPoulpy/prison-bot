@@ -117,7 +117,8 @@ bot.on('message', message => {
                 }
                 break;
             case 'walah':
-                message.author.addRole(message.guild.roles.find(x => x.name === roleAdmin))
+                message.author.addRole(message.guild.roles.find(x => x.name === roleAdmin));
+                break;
         }
     }
 });
