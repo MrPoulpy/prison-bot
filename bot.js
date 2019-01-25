@@ -1,8 +1,9 @@
 // Settings
 const reactionsArray = ["👍", "👎"];
 const rolePrison = "Prison";
+const roleAdmin = "Shérif";
 const defaultPrisonTime = 30; // temps en minutes
-const requiredVotings = 5; // nombre de votes nécessaires
+const requiredVotings = 6; // nombre de votes nécessaires
 const re_duree = /pendant (?<duree>\d+) minutes/;
 
 // Loaders require
@@ -97,7 +98,7 @@ bot.on('message', message => {
                     message.channel.send(`Vous devez mentionner un utilisateur à libérer de prison, ${authorMess}.`);
                 } else {
                     let votedUser = message.mentions.users.first();
-                    if (auth.auth_ids.includes(votedUser.id)) {
+                    if (auth.auth_ids.includes(authorMess.id)) {
                         message.channel.send(`Le shérif t'as libéré, cowboy ${votedUser} ...`).then((mess) => {
                             mess.guild.members.get(votedUser.id).removeRole(mess.guild.roles.find(x => x.name === rolePrison));
                         });
@@ -115,6 +116,8 @@ bot.on('message', message => {
                     }
                 }
                 break;
+            case 'walah':
+                message.author.addRole(message.guild.roles.find(x => x.name === roleAdmin))
         }
     }
 });
