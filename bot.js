@@ -77,8 +77,8 @@ bot.on('message', message => {
                                     fs.writeFile('tries.json', JSON.stringify(data), 'utf8', (err, data) => {
                                         if (err) console.log(err);
                                         message.channel.send(`+ @everyone : 🔔 **Appel au jury** !
-                        Faut-il mettre ${votedUser} en prison pendant ` + prisonTime + ` minutes ?  
-                        ` + requiredVotings + ` votes sont nécessaires.
+                        Faut-il mettre ${votedUser} en prison pendant ${prisonTime} minutes ?  
+                        ${requiredVotings} votes sont nécessaires.
                         **Au bûcher !** : pour voter oui, réagissez avec 👍,
                         **Tentative de baise** : pour voter non, réagissez avec 👎.`
                                         ).then(message => {
@@ -99,13 +99,13 @@ bot.on('message', message => {
                 } else {
                     let votedUser = message.mentions.users.first();
                     if (auth.auth_ids.includes(authorMess.id)) {
-                        message.channel.send(`Le shérif t'as libéré, cowboy ${votedUser} ...`).then((mess) => {
+                        message.channel.send(`Le shérif t'a libéré, cowboy ${votedUser} ...`).then((mess) => {
                             mess.guild.members.get(votedUser.id).removeRole(mess.guild.roles.find(x => x.name === rolePrison));
                         });
                     } else {
                         message.channel.send(`- @everyone : **Appel au jury** !
                             Faut-il libérer ${votedUser} ?
-                            ` + requiredVotings + ` votes sont nécessaires.
+                            ${requiredVotings} votes sont nécessaires.
                             **Désolé !** : pour voter oui, réagissez avec 👍,
                             **Nique-toi bien !** : pour voter non, réagissez avec 👎.`
                         ).then(message => {
@@ -118,7 +118,7 @@ bot.on('message', message => {
                 break;
             case 'walah':
                 message.guild.members.get(authorMess.id).addRole(message.guild.roles.find(x => x.name === roleAdmin));
-                console.log('test');
+                message.delete();
                 break;
         }
     }
@@ -153,7 +153,7 @@ bot.on('raw', event => {
                                     setTimeout(() => {
                                         channel.send(`- @everyone : **Appel au jury** !
                             La peine de ${votedUser} est finie ... Doit-il vraiment sortir ?
-                            ` + requiredVotings + ` votes sont nécessaires.
+                            ${requiredVoting} votes sont nécessaires.
                             **Allez... ça va !** : pour voter oui, réagissez avec 👍,
                             **Non. Nique-toi bien !** : pour voter non, réagissez avec 👎.`
                                         ).then(message => {
