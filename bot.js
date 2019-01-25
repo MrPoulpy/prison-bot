@@ -117,7 +117,9 @@ bot.on('message', message => {
                 break;
             case "blague":
                 let randomNumber = Math.floor(Math.random() * 115);
-                fetch("https://bridge.buddyweb.fr/api/blagues/blagues/" + randomNumber).then(blg => blg.json()).then(b => message.send(b.blague));
+                fetch("https://bridge.buddyweb.fr/api/blagues/blagues/" + randomNumber)
+                    .then(blg => blg.json())
+                    .then(b => message.channel.send(b.blague));
                 break;
             case "casino":
                 function randomInt(min, max) {
