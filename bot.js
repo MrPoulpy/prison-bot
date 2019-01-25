@@ -1,7 +1,6 @@
 // Settings
 const reactionsArray = ["👍", "👎"];
 const rolePrison = "Prison";
-const roleAdmin = "Shérif";
 const defaultPrisonTime = 30; // temps en minutes
 const requiredVotings = 6; // nombre de votes nécessaires
 const re_duree = /pendant (?<duree>\d+) minutes/;
@@ -13,7 +12,6 @@ const fs = require('fs');
 const schedule = require('node-schedule');
 const auth = require('./auth.json');
 logger.level = 'debug';
-
 
 // Initialisation du Discord bot
 const bot = new Discord.Client();
@@ -115,6 +113,39 @@ bot.on('message', message => {
                         });
                     }
                 }
+                break;
+            case "blague":
+                let randomNumber = Math.floor(Math.random() * 115);
+                fetch("https://bridge.buddyweb.fr/api/blagues/blagues/" + randomNumber).then(blg => {
+                    message.channel.send(blg.blague);
+                });
+                break;
+            case "casino":
+                function randomInt(min, max) {
+                    return Math.floor(Math.random() * (max - min + 1) + min);
+                }
+                const slotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
+                const slot1 = slotOptions[randomInt(0, 8)];
+                JSON.stringify(slot1);
+                const slot2 = slotOptions[randomInt(0, 8)];
+                JSON.stringify(slot2);
+                const slot3 = slotOptions[randomInt(0, 8)];
+                JSON.stringify(slot3);
+                const slotMessage = message.channel.send(`**${message.author.username}** lance la machine à sous.`);
+                slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
+                slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
+                slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
+                slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
+                if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
+                    slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
+                } else {
+                    slotMessage.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
+                }
+                break;
+            case "noter":
+                const student = message.guild.members.random();
+                const digit = ((Math.floor(Math.random() * (20 - 1 + 1))) + 1);
+                message.channel.send(`${student} est noté pour son diplôme : \n \n ${digit} / 20`);
                 break;
         }
     }
