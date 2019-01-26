@@ -155,12 +155,9 @@ bot.on('message', message => {
                 message.channel.send(db.dicks[random].drawing);
                 break;
             case "citation" :
-                const film = (args[0] in db.citations) ? (db.citations.find(obj => obj[args[0]])) : db.citations[(Math.floor(Math.random() * Object.keys(db.citations).length) + 1)];
-                // let randomCitation = (Math.floor(Math.random() * db.citations[film].length));
-
-                console.log(film);
-                // console.log(randomCitation);
-                // message.channel.send(db.citations[film])
+                let randomCitation = (Math.floor(Math.random() * db.citations.length));
+                message.channel.send(`${db.citations[randomCitation].text}
+                        *${db.citations[randomCitation].film}*`);
         }
     }
 });
