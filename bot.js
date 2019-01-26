@@ -154,7 +154,9 @@ bot.on('message', message => {
                 const random = (Math.floor(Math.random() * db.dicks.length));
                 message.channel.send(db.dicks[random]);
                 break;
-            case "citations":
+            case "citation" :
+                console.log(args[1]);
+                console.log(db.citations[1]);
                 const film = (args[1] in db.citations) ? (db.citations[args[1]]) : db.citations[(Math.floor(Math.random() * Object.keys(db.citations).length) + 1)];
                 console.log(film);
         }
