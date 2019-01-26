@@ -2,7 +2,7 @@
 const reactionsArray = ["👍", "👎"];
 const rolePrison = "Prison";
 const defaultPrisonTime = 30; // temps en minutes
-const requiredVotings = 6; // nombre de votes nécessaires
+const requiredVotings = 5; // nombre de votes nécessaires
 const re_duree = /pendant (?<duree>\d+) minutes/;
 
 // Loaders require
@@ -123,50 +123,44 @@ bot.on('message', message => {
                     .then(b => message.channel.send(b.blagues));
                 break;
             case "casino":
+                const slotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
+                const slot1 = slotOptions[randomInt(0, 8)];
+                JSON.stringify(slot1);
+                const slot2 = slotOptions[randomInt(0, 8)];
+                JSON.stringify(slot2);
+                const slot3 = slotOptions[randomInt(0, 8)];
+                JSON.stringify(slot3);
+                message.channel.send(`**${message.author.username}** lance la machine à sous.`).then(msg => {
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
+                    if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
+                    } else {
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
+                    }
+                });
+                break;
+            case "cаsino":
                 function randomInt(min, max) {
                     return Math.floor(Math.random() * (max - min + 1) + min);
                 }
-                console.log(message.content.slice(-1));
-                if (message.content.slice(-1) === ' ') {
-                    const slotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
-                    const slotRandom = slotOptions[randomInt(0, 8)];
-                    const slot1 = slotRandom;
-                    JSON.stringify(slot1);
-                    const slot2 = slotRandom;
-                    JSON.stringify(slot2);
-                    const slot3 = slotRandom;
-                    JSON.stringify(slot3);
-                    message.channel.send(`**${message.author.username}** lance la machine à sous.`).then(msg => {
-                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
-                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
-                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
-                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
-                        if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
-                            msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
-                        } else {
-                            msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
-                        }
-                    });
-                } else {
-                    const slotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
-                    const slot1 = slotOptions[randomInt(0, 8)];
-                    JSON.stringify(slot1);
-                    const slot2 = slotOptions[randomInt(0, 8)];
-                    JSON.stringify(slot2);
-                    const slot3 = slotOptions[randomInt(0, 8)];
-                    JSON.stringify(slot3);
-                    message.channel.send(`**${message.author.username}** lance la machine à sous.`).then(msg => {
-                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
-                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
-                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
-                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
-                        if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
-                            msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
-                        } else {
-                            msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
-                        }
-                    });
-                }
+                const newSlotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
+                const newDlotRandom = newSlotOptions[randomInt(0, 8)];
+                const newSlot1 = newDlotRandom;
+                JSON.stringify(newSlot1);
+                const newSlot2 = newDlotRandom;
+                JSON.stringify(newSlot2);
+                const newSlot3 = newDlotRandom;
+                JSON.stringify(newSlot3);
+                message.channel.send(`**${message.author.username}** lance la machine à sous.`).then(msg => {
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${newSlot1}| |`);
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${newSlot1} | ${newSlot2} |`);
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${newSlot1} | ${newSlot2} | ${newSlot3}`);
+                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${newSlot1} | ${newSlot2} | ${newSlot3}\n\nGagné !`);
+                });
                 break;
             case "noter":
                 const student = message.guild.members.random();
@@ -189,7 +183,7 @@ bot.on('message', message => {
                         mess.guild.members.get(votedUser.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
                     });
                 } else {
-                    message.channel.send(`Tu t'es cru shérif ${votedUser} ou quoi ?`);
+                    message.channel.send(`Tu t'es cru shérif ${message.author.username} ou quoi ?`);
                 }
         }
     }
