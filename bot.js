@@ -231,7 +231,7 @@ bot.on('raw', event => {
                     reaction => reaction.count)[0];
 
                 // Check de pas prison le bot
-                if (votedUser.id !== bot.user.id) {
+                if (votedUser && (votedUser.id !== bot.user.id)) {
 
                     // si le compte de 👍 est de minimum 5
                     if (countThumbsUp >= requiredVotings) {
