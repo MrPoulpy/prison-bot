@@ -12,6 +12,7 @@ const fs = require('fs');
 const schedule = require('node-schedule');
 const auth = require('./auth.json');
 const fetch = require('node-fetch');
+const db = require('./db.json');
 logger.level = 'debug';
 
 // Initialisation du Discord bot
@@ -146,9 +147,16 @@ bot.on('message', message => {
                 break;
             case "noter":
                 const student = message.guild.members.random();
-                const digit = ((Math.floor(Math.random() * (20 - 1 + 1))) + 1);
+                const digit = (Math.floor(Math.random() * (21)));
                 message.channel.send(`${student} est noté pour son diplôme : \n \n ${digit} / 20`);
                 break;
+            case "bite":
+                const random = (Math.floor(Math.random() * db.dicks.length));
+                message.channel.send(db.dicks[random]);
+                break;
+            case "citations":
+                const film = (args[1] in db.citations) ? (db.citations[args[1]]) : db.citations[(Math.floor(Math.random() * Object.keys(db.citations).length) + 1)];
+                console.log(film);
         }
     }
 });
