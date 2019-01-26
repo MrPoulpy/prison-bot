@@ -231,7 +231,8 @@ bot.on('raw', event => {
                                         });*/
                                     }, prisonTime*60000);
 
-                                    channel.send(`***@everyone*** : ${votedUser} a été banni(e) `+prisonTime+` minutes. Alleluïa !`).then(() => {
+                                    channel.send({embed: {color: 3447003, "image": {"url": "https://66.media.tumblr.com/22b23291747319d693a2e8d029b1c59a/tumblr_o5afscBOLE1rb2l1co1_400.gif"}}});
+                                    channel.send(`***@everyone*** : ${votedUser}, les membres de La Piscine ont décidé de vous éliminer, et leur sentence est irrévocable. (enfin ... pas pendant `+prisonTime+` minutes.)`).then(() => {
                                         channel.fetchMessage(event.d.message_id).then(mg => {
                                             mg.delete();
                                         });
@@ -245,6 +246,7 @@ bot.on('raw', event => {
                     if (countThumbsDown >= requiredVotings) {
                         channel.fetchMessage(event.d.message_id).then(mg => {
                             mg.delete().then(() => {
+                                channel.send({embed: {color: 3447003, "image": {"url": "https://66.media.tumblr.com/1517c2ab08e08ffb2ad96dc2af3fedea/tumblr_nnn9o1mZJQ1rb2l1co1_500.gif"}}});
                                 channel.send(`***@everyone*** : ${votedUser} a été gracié(e).`);
                             });
                         });
@@ -265,6 +267,7 @@ bot.on('raw', event => {
 
                         channel.fetchMessage(event.d.message_id).then(mg => {
                             msg.guild.members.get(votedUser.id).removeRole(msg.guild.roles.find(x => x.name === rolePrison)).then(() => {
+                                channel.send({embed: {color: 3447003, "image": {"url": "https://66.media.tumblr.com/02c5ec43344c6ce200f8ecf102bc23c7/tumblr_nnrypiSVwo1rb2l1co1_500.gif"}}});
                                 channel.send(`***@everyone*** : ${votedUser} est sorti(e) de prison. Attention à vos yeux.`);
                                 mg.delete();
                             });
