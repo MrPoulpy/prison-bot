@@ -152,7 +152,7 @@ bot.on('message', message => {
                 break;
             case "bite":
                 const random = (Math.floor(Math.random() * db.dicks.length));
-                message.channel.send(db.dicks[random]);
+                message.channel.send(db.dicks[random].drawing);
                 break;
             case "citation" :
                 console.log(args[1]);
