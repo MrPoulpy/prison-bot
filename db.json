@@ -7,8 +7,8 @@
     {"drawing":  "……………………………………….¸„„„„\n…………………….…………...„--~*'¯…….'\\\n………….…………………… („-~~--„¸_….,/ì'Ì\n…….…………………….¸„-^\"¯ : : : : :¸-¯\"¯/'\n……………………¸„„-^\"¯ : : : : : : : '\\¸„„,-\"\n**¯¯¯'^^~-„„„---~^*'\"¯ : : : : : : : : : :¸\"\n.:.:.:.:.„-^\" : : : : : : : : : : : : : : : : :„-\"\n:.:.:.:.:.:.:.:.:.:.: : : : : : : : : : ¸„-^¯\n.::.:.:.:.:.:.:.:. : : : : : : : ¸„„-^¯\n:.' : : '\\ : : : : : : : ;¸„„-~\"\n:.:.:: :\"-„\"\"***/*'ì¸'¯\n:.': : : : :\"-„ : : :\"\\\n.:.:.: : : : :\" : : : : \\,\n:.: : : : : : : : : : : : 'Ì\n: : : : : : :, : : : : : :/\n\"-„_::::_„-*__„„~\"\uFEFF "},
     {"drawing":  "8===D"}
   ],
-  "citations": {
-    "oss": [
+  "citations": [
+    {"oss": [
       {"film":"OSS 117", "text": "- Ça va hubert ?!\n- Ça va oui sauf que l’avion perd de l’altitude ! On file sur les arbres et je n’aurai pas le temps de sortir les trains d’atterrissage.\n- Y’a quoi qui va ?!\n- Ce qui va c’est que je suis là ! \n- Oh mon Dieu ! \n- Merci !"},
       {"film":"OSS 117", "text": "- Rhha... les sales rouges !\n- Bah, non, les sales jaunes !"},
       {"film":"OSS 117", "text": "- Voilà, cadeau... de Noël !\n- Merci.\n- Non, je dis cadeau de Noël, parce que c’est par rapport à mon prénom. \n- Oui, c’est ce que j’avais compris.\n- Sinon y’a... y’a aussi les boules... \n- De Noël...? \n- Oui !! ... Ohhh, oh si c’est rigolo !"},
@@ -82,8 +82,8 @@
       {"film":"OSS 117", "text": "- Ton frère est en train de disparaître de la photo, ensuite ce sera au tour de ta sœur, et à moins que tu répares les dégâts, tu seras le suivant...\n- Ah, c’est pas le pied !\n- Mais non, ça commence par la tête j’te dis !"},
       {"film":"OSS 117", "text": "La route ? Là où on va, on n’a pas besoin de route !"},
       {"film":"OSS 117", "text": "He papa ! Euh George ! Toi sur le vélo !"}
-    ],
-    "backtothefuture": [
+    ]},
+    {"backtothefuture": [
       {"film":"Retour vers le Futur", "text": "- 2.21 Gigowatts !! 2.21 Gigowatts !! Mon dieu !\n- Mais enfin c’est quoi un gigowatt ?\n- Je devais être complètement dans les nuages ! 2.21 Gigowatts, comment puis-je générer une puissance pareille monsieur Edisson ? C’est impossible je n’y arriverais pas !\n- Mais Doc écoutez c’est rien, tout ce qu’il faut c’est un peu de plutonium !"},
       {"film":"Retour vers le Futur", "text": "Je suis Dark Vador et je viens de la planète Vulcain."},
       {"film":"Retour vers le Futur", "text": "Non de Zeus !"},
@@ -119,8 +119,8 @@
       {"film":"Retour vers le Futur", "text": "J’espère que vous imaginez l’avenir monsieur Eastwood."},
       {"film":"Retour vers le Futur", "text": "- Oh, dur, c’est pas le pied !\n- Encore ? Mais qu’est-ce que c’est que ces histoires de pieds ? Les pieds seraient le point sensible des hommes du futur ? C’est peut-être dû à l’accroissement de la pesanteur."},
       {"film":"Retour vers le Futur", "text": "Mamie dès que c’est prêt tu m’en foures un morceau dans la bouche !"}
-    ],
-    "asterix": [
+    ]},
+    {"asterix": [
       {"film":"Astérix et Obélix : Mission Cléopâtre", "text": "Moi je vais rester là pour raviver le feu parce que des fois il se déravive."},
       {"film":"Astérix et Obélix : Mission Cléopâtre", "text": "J'avais aussi pensé à « Bande de chacals, vous allez crever comme des chacals ». Mais ça faisait deux fois « chacals » donc... Quoi, on dit des « chacaux » ?"},
       {"film":"Astérix et Obélix : Mission Cléopâtre", "text": "Qu’est-ce que c’est que ce pays ? C’est pas possible. Il fait au moins... -8000 !"},
@@ -201,8 +201,8 @@
       {"film":"Astérix et Obélix : Mission Cléopâtre", "text": "Hue Cannabis ! Allez ! Tu n’avances pas du tout, Cannabis !"},
       {"film":"Astérix et Obélix : Mission Cléopâtre", "text": "Et c’est qui le lion maintenant ?"},
       {"film":"Astérix et Obélix : Mission Cléopâtre", "text": "J’ai venu, j’ai vu, j’ai vaincu. Vini, vidi, vici."}
-    ],
-    "dikkenek": [
+    ]},
+    {"dikkenek": [
       {"film":"Dikkenek", "text": "Ou tu sors ou je te sors, mais faudra prendre une décision."},
       {"film":"Dikkenek", "text": "Allôôô maman ? Claudy à l’appareil ! Dis, je viens de me faire carjacker."},
       {"film":"Dikkenek", "text": "Je sais que je plais pas à tout le monde... Mais quand je vois à qui je plais pas, je m‘demande si ça me dérange vraiment."},
@@ -277,8 +277,8 @@
       {"film":"Dikkenek", "text": "Ben quoi… venez hein des gros nénés, un gros ventre, des grosse cuisses, ça change, ben ouais, ça change des magazines."},
       {"film":"Dikkenek", "text": "Coup de boule."},
       {"film":"Dikkenek", "text": "Je suis directeur marketing management des entreprises Vanderlek."}
-    ],
-    "dinerdecons": [
+    ]},
+    {"dinerdecons": [
       {"film":"Le dîner de cons", "text": "- Il s’appelle Juste Leblanc.\n- Ah bon, il n’a pas de prénom ?\n- Je viens de vous le dire Juste Leblanc... Votre prénom c’est François, c’est juste ? Eh bien lui c’est pareil, c’est Juste.\n- ..."},
       {"film":"Le dîner de cons", "text": "Il a une belle tête de vainqueur."},
       {"film":"Le dîner de cons", "text": "Je veux que tu reviennes tout de suite, Charlotte... Bien sûr tu te rhabilles, évidemment que tu t’rhabilles !"},
@@ -302,8 +302,8 @@
       {"film":"Le dîner de cons", "text": "Il est un peu râpeux..."},
       {"film":"Le dîner de cons", "text": "- Et ma femme ?\n- … Quoi ?\n- Il a oublié ma femme. Il fait le clown pendant cinq minutes et il oublie ma femme !\n- Ah la boulette…"},
       {"film":"Le dîner de cons", "text": "Ah booon... Je peux vous le dire alors... sa femme l’a quitté en plus, c’est un homme brisé, le cœur, les reins, tout..."}
-    ],
-    "shrek": [
+    ]},
+    {"shrek": [
       {"film":"Shrek", "text": "T’es pas mouru l’âne, t’es pas mouru."},
       {"film":"Shrek", "text": "Celui là il était sévère Shrek, encore deux comme ça et il va falloir changer l’air."},
       {"film":"Shrek", "text": "Tu sais ce que tout le monde aime ? Le clafoutis. T’as déjà rencontré quelqu’un à qui tu dis : « fais péter le clafoutis ! », et qui te dit, « j’aime pas le clafoutis » ? Il n’y a rien de plus clafoutant que le clafoutis !"},
@@ -344,8 +344,8 @@
       {"film":"Shrek", "text": "Mieux vaut que ce soit dehors que dedans vu l’odeur."},
       {"film":"Shrek", "text": "- Oh il fait vraiment dégouttant ici !\n- Quelqu’un aurait une éponge ?"},
       {"film":"Shrek", "text": "<b>Charmant</b> : Toi ! Tu ne saurais mentir... Alors dis-moi, bille de bois : Où. Est. Shrek ?\n<b>Pinocchio</b> : Ben eum... Hum... C’est que... Je sais pas où il est pas !\n<b>Charmant</b> : Tu tentes de me dire que tu ne sais pas où est Shrek ?!\n<b>Pinocchio</b> : Il est pt’êt’ pas déraisonnable d’envisager que je ne dise pas où tout comme que ce soit quasi-partiellement incorrect !\n<b>Charmant</b> : Tu sais donc où il est !\n<b>Pinocchio</b> : Ah au contraire : il n’est pas absurde ou couci-couça d’envisager l’idée ni sotte ni grenue que somme toute de la manière ni plus ou moins aléatoire, je sache en effet...\n<b>Charmant</b> : IL SUFFIT !!\n<b>Pinocchio</b> : ... avec une nette incertitude où il pourrait n’être pas ! ... Alors quelque peu après, il aurait pu ne pas y être, et même s’il n’était pas là où je savais qu’il ne serait pas, ce qui tendrait à penser que j’aie absolument aucune idée de là où il n’est pas !\n<b>L’un des trois petits cochons</b> : Oooh ! Ça suffit ! Shrek, il court après le héritier du trône !! ... Oops !\n<b>Pinocchio</b> : ... Heheh..."}
-    ],
-    "malcolm": [
+    ]},
+    {"malcolm": [
       {"film":"Malcolm", "text": "J’ai tellement réfléchi que j’ai saigné du nez."},
       {"film":"Malcolm", "text": "Je m’attendais à rien et je suis quand même déçu."},
       {"film":"Malcolm", "text": "La vie n’est peut-être que comme les montagnes russes, on ne descend que pour avoir le plaisir de remonter."},
@@ -362,8 +362,8 @@
       {"film":"Malcolm", "text": "- Malcolm, qu’as-tu à dire à tes camarades qui sont restés en classe durant la récréation pendant que tu jouais au basket avec tes copains ?\n- Merci !"},
       {"film":"Malcolm", "text": "Eh les gars, j’ai fait une super-découverte ! Quand on mélange du bleu avec du jaune, on obtient une nouvelle couleur ! Et je vais l’appeler « Bleulaune » !"},
       {"film":"Malcolm", "text": "Poupipoupipoupipoupipoupipou…"}
-    ],
-    "kaamelott": [
+    ]},
+    {"kaamelott": [
       {"film":"Kaamelott", "text": "C’est pas faux !"},
       {"film":"Kaamelott", "text": "<b>Caius</b> : Hé les connards ! Vous pouvez faire griller un porcelet s’il vous plaît ?\n<b>Arthur</b> : Les connards ?\n<b>Léodagan</b> : S’il vous plaît ?"},
       {"film":"Kaamelott", "text": "Moi, je m’en fous, si on me force à y retourner, je retiens ma respiration jusqu’à ce qu’on arrête de me forcer à y retourner."},
@@ -461,8 +461,8 @@
       {"film":"Kaamelott", "text": "J’y connais rien, hein, mais...  à votre avis, le fait que vous me touchiez pratiquement jamais, ça a une influence sur la fécondité ?"},
       {"film":"Kaamelott", "text": "Mais le code, c’est pas « le code » ?"},
       {"film":"Kaamelott", "text": "Cœur à l’ouvrage n’a pas fière allure."}
-    ],
-    "rrrrrrr": [
+    ]},
+    {"rrrrrrr": [
       {"film":"RRRrrrr!", "text": "Le 9 mai 1969, à deux kilomètres de la frontière nord du Laos, La 101ème Division d’Infanterie de l’armée américaine progresse vers la colline 937. Pour eux c’est une simple reconnaissance. Pour les Viêt-Cong, la colline 937 est une zone stratégique. La dizaine d’appelés de la 101ème Division, peu formée au combat, devait effectuer cette mission de routine en moins de deux heures. Ils résisteront héroïquement pendant neuf jours.\nCe film ne raconte pas leur histoire."},
       {"film":"RRRrrrr!", "text": "Ça fait deux morts là, ça commence à être ennuyeux ! Après ça va être qui ? Ça va être toi, après ça va être toi, après ça va être toi... Bon là ça va. Mais après ça va être moi. Et là ça va être triste."},
       {"film":"RRRrrrr!", "text": "<b>Guy</b> : Guy.\n<b>Pierre (le chef)</b> : Comment ?\n<b>Guy</b> : Guy.\n<b>Pierre (le chef)</b> : Comment ça se prononce ?\n<b>Guy</b> : Guy.\n<b>Pierre (le Touffe)</b> : Pieeerrre.\n<b>Guy</b> : Non, c’est plus « Guy »."},
@@ -555,8 +555,8 @@
       {"film":"RRRrrrr!", "text": "Rien ne va changer des à présent mais tout va changer maintenant, une petite partie des Biche-volley ?"},
       {"film":"RRRrrrr!", "text": "On joue au papouth et à la mamouth ?"},
       {"film":"RRRrrrr!", "text": "- Bonne nuit !\n- TA GUEULE !\n- Bonne nuit !\n- TA GUEULE !"}
-    ],
-    "classeamericaine": [
+    ]},
+    {"classeamericaine": [
       {"film":"La Classe Américaine", "text": "- Ah, voilà enfin le roi de la classe ! L’homme trop bien sapé, Abitbol ! Alors comme ça tu as été élu l’homme le plus classe du monde ! Laisse-moi rire ! Style le grand playboy des fonds marins, genre qui fait rêver les ménagères. Sauf que moi je les baise, moi, les ménagères, non ? C’est pas vrai ? \n- Écoute-moi bien mon petit José. Tu baises les ménagères, bien, tu dois avoir le cul qui brille. Mais c’est pas ça qu’on appelle la classe. Je te dis ça en qualité d’homme le plus classe du monde. \n- Eh je t’arrête tout de suite. La classe, c’est d’être chic dans sa manière de s’habiller. Rien de tel que d’aller chez Azzedine Alaia même de s’acheter des sous-pulls chez Yohji Yamamoto !\n- Excuse-moi de te dire ça mon pauvre José, mais tu confonds un peu tout. Tu fais un amalgame entre la coquetterie et la classe. Tu es fou. Tu dépenses tout ton argent dans les habits et accessoires de mode mais tu es ridicule. Enfin si ça te plait… C’est toi qui les portes. Mais moi, si tu veux mon opinion, ça fait un peu… has been.\n- La vache ! Moi, j’ai l’air has been ? J’en ai pour plus d’une barre de fringues sur moi. Alors va te faire mettre !\n- Tu n’es vraiment pas très sympa. Mais le train de tes injures roule sur les rails de mon indifférence. Je préfère partir plutôt que d’entendre ça plutôt que d’être sourd.\n- Bien ! Considère qu’on n’est plus amis, Abitbol !"},
       {"film":"La Classe Américaine", "text": "Monde de merde."},
       {"film":"La Classe Américaine", "text": "- Où j’ai connu Georges ? C’est une excellente question... À la ferme.\n- La ferme ? Quelle ferme ?\n- À la ferme ta gueule toi du con, espèce de crétin ! Qu’est ce que tu veux, nous prendre la tête là ? Pauv’ con ! Oui j’l’ai connu à la ferme, on était des cow boy, on vivait à la ferme, ça a rien d’étonnant.\n- Merci, c’est très agréable. Non mais c’est vrai, je me fais engueuler devant des journalistes qu’on connaît même pas. C’est classe bravo."},
@@ -587,8 +587,8 @@
       {"film":"La Classe Américaine", "text": "- Mais pourquoi j’peux pas travailler seul ?\n- Parce que t’es trop mauvais.\n- Ah ben là patron vous m’avez convaincu. C’est une bonne raison."},
       {"film":"La Classe Américaine", "text": "Tu crois qu’tu m’impressionnes ? Moi j’sais dire allons à la plage monsieur Renard : « vamos a la playa señor Zorro. »"},
       {"film":"La Classe Américaine", "text": "On l’a retrouvé assassiné un jour, il en est mort !"}
-    ],
-    "citedelapeur": [
+    ]},
+    {"citedelapeur": [
       {"film":"La Cité de la Peur", "text": "- Simon, vous n’avez pas de bagages ?\n- Ah, ba, non ! On m’a dit de venir, pas de venir avec des bagages, pourquoi il fallait que j’en prendre ?"},
       {"film":"La Cité de la Peur", "text": "- Parlez moi de vous plutôt.\n- Odile ! Moi c’est Odile ! Pluto c’est l’ami de Mickey !\n- Ah non ! Pluto c’est le chien de Mickey ! L’ami de Mickey c’est Dingo !"},
       {"film":"La Cité de la Peur", "text": "- Il s’est fait coincer par la tapette géante ! \n- Écoutez Kara, Monsieur n’est pas une tapette, Monsieur est commissaire de police !"},
@@ -635,6 +635,6 @@
       {"film":"La Cité de la Peur", "text": "Karamazov... Aucun lien je suis fils unique."},
       {"film":"La Cité de la Peur", "text": "Oh ! L’aspirateur j’ai oublié de l’éteindre !"},
       {"film":"La Cité de la Peur", "text": "Remboursez nos invitations !! Remboursez nos invitations !!"}
-    ]
-  }
+    ]}
+  ]
 }
