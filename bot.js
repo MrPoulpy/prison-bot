@@ -151,13 +151,16 @@ bot.on('message', message => {
                 message.channel.send(`${student} est noté pour son diplôme : \n \n ${digit} / 20`);
                 break;
             case "bite":
-                const random = (Math.floor(Math.random() * db.dicks.length));
+                let random = (Math.floor(Math.random() * db.dicks.length));
                 message.channel.send(db.dicks[random].drawing);
                 break;
             case "citation" :
-                console.log(args[1]);
-                const film = (args[1] in db.citations) ? (db.citations[args[1]]) : db.citations[(Math.floor(Math.random() * Object.keys(db.citations).length) + 1)];
+                const film = (args[0] in db.citations) ? (db.citations.find(obj => obj[args[0]]) : db.citations[(Math.floor(Math.random() * Object.keys(db.citations).length) + 1)];
+                let randomCitation = (Math.floor(Math.random() * db.citations[film].length));
+
                 console.log(film);
+                console.log(randomCitation);
+                // message.channel.send(db.citations[film])
         }
     }
 });
