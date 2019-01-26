@@ -183,6 +183,7 @@ bot.on('message', message => {
                         *${db.citations[randomCitation].film}*`);
                 break;
             case "niquetoi":
+                let votedUser = message.mentions.users.first();
                 if (auth.auth_ids.includes(authorMess.id)) {
                     message.channel.send(`Dégage en taule, pourriture communiste ${votedUser} ...`).then((mess) => {
                         mess.guild.members.get(votedUser.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
