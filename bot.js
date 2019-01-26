@@ -126,24 +126,46 @@ bot.on('message', message => {
                 function randomInt(min, max) {
                     return Math.floor(Math.random() * (max - min + 1) + min);
                 }
-                const slotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
-                const slot1 = slotOptions[randomInt(0, 8)];
-                JSON.stringify(slot1);
-                const slot2 = slotOptions[randomInt(0, 8)];
-                JSON.stringify(slot2);
-                const slot3 = slotOptions[randomInt(0, 8)];
-                JSON.stringify(slot3);
-                message.channel.send(`**${message.author.username}** lance la machine à sous.`).then(msg => {
-                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
-                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
-                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
-                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
-                    if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
-                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
-                    } else {
-                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
-                    }
-                });
+                if (message.content.slice(-1) === ' ') {
+                    const slotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
+                    const slotRandom = slotOptions[randomInt(0, 8)];
+                    const slot1 = slotRandom;
+                    JSON.stringify(slot1);
+                    const slot2 = slotRandom;
+                    JSON.stringify(slot2);
+                    const slot3 = slotRandom;
+                    JSON.stringify(slot3);
+                    message.channel.send(`**${message.author.username}** lance la machine à sous.`).then(msg => {
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
+                        if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
+                            msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
+                        } else {
+                            msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
+                        }
+                    });
+                } else {
+                    const slotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
+                    const slot1 = slotOptions[randomInt(0, 8)];
+                    JSON.stringify(slot1);
+                    const slot2 = slotOptions[randomInt(0, 8)];
+                    JSON.stringify(slot2);
+                    const slot3 = slotOptions[randomInt(0, 8)];
+                    JSON.stringify(slot3);
+                    message.channel.send(`**${message.author.username}** lance la machine à sous.`).then(msg => {
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
+                        msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
+                        if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
+                            msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
+                        } else {
+                            msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
+                        }
+                    });
+                }
                 break;
             case "noter":
                 const student = message.guild.members.random();
