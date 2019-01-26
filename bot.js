@@ -148,7 +148,7 @@ bot.on('message', message => {
             case "noter":
                 const student = message.guild.members.random();
                 const digit = (Math.floor(Math.random() * (21)));
-                message.channel.send(`${student} est noté pour son diplôme : \n \n ${digit} / 20`);
+                message.channel.send(`${student} est noté pour son diplôme : \n \n ${digit} / 20 \n \n Ce qui est bien mais pas top.`);
                 break;
             case "bite":
                 let random = (Math.floor(Math.random() * db.dicks.length));
