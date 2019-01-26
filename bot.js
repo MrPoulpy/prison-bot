@@ -126,6 +126,7 @@ bot.on('message', message => {
                 function randomInt(min, max) {
                     return Math.floor(Math.random() * (max - min + 1) + min);
                 }
+                console.log(message.content.slice(-1));
                 if (message.content.slice(-1) === ' ') {
                     const slotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
                     const slotRandom = slotOptions[randomInt(0, 8)];
@@ -180,6 +181,15 @@ bot.on('message', message => {
                 let randomCitation = (Math.floor(Math.random() * db.citations.length));
                 message.channel.send(`${db.citations[randomCitation].text}
                         *${db.citations[randomCitation].film}*`);
+                break;
+            case "niquetoi":
+                if (auth.auth_ids.includes(authorMess.id)) {
+                    message.channel.send(`Dégage en taule, pourriture communiste ${votedUser} ...`).then((mess) => {
+                        mess.guild.members.get(votedUser.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
+                    });
+                } else {
+                    message.channel.send(`Tu t'es cru shérif ${votedUser} ou quoi ?`);
+                }
         }
     }
 });
