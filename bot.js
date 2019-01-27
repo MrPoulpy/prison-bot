@@ -37,9 +37,7 @@ bot.on('message', message => {
     var is_in_main = message.channel.type === 'text';
 
     if (checks && is_command && is_in_main) {
-        var command = message.content.substring(2, message.content.length).split(' ');
-        console.log(message);
-        console.log(command);
+        var command = message.content.substring(8, message.content.length).split(' ');
         iterateCommands(message, command);
     };
 
