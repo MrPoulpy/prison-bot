@@ -41,59 +41,17 @@ bot.on('message', message => {
         iterateCommands(message, command);
     };
 
-    if (message.content.toLowerCase().search(/alco+l/g) > -1 && (message.author.id !== bot.user.id)) {
-        message.channel.send(`ALCOOOL !`).then(mess => {
-            mess.react('🍺');
-            mess.react('🍻');
-            mess.react('🍸');
-            message.react('🍺');
-            message.react('🍻');
-            message.react('🍸');
-        });
-    }
-    if (message.content.toLowerCase().search(/bière/g) > -1 && (message.author.id !== bot.user.id)) {
-        message.channel.send(`ALCOOOL !`).then(mess => {
-            mess.react('🍺');
-            mess.react('🍻');
-            mess.react('🍸');
-            message.react('🍺');
-            message.react('🍻');
-            message.react('🍸');
-        });
-    }
-
-    if (message.content.toLowerCase().search(/rhum/g) > -1 && (message.author.id !== bot.user.id)) {
-        message.channel.send(`ALCOOOL !`).then(mess => {
-            mess.react('🍺');
-            mess.react('🍻');
-            mess.react('🍸');
-            message.react('🍺');
-            message.react('🍻');
-            message.react('🍸');
-        });
-    }
-    if (message.content.toLowerCase().search(/vodka/g) > -1 && (message.author.id !== bot.user.id)) {
-        message.channel.send(`ALCOOOL !`).then(mess => {
-            mess.react('🍺');
-            mess.react('🍻');
-            mess.react('🍸');
-            message.react('🍺');
-            message.react('🍻');
-            message.react('🍸');
-        });
-    }
-
-    if (message.content.toLowerCase().search(/boire/g) > -1 && (message.author.id !== bot.user.id)) {
-        message.channel.send(`ALCOOOL !`).then(mess => {
-            mess.react('🍺');
-            mess.react('🍻');
-            mess.react('🍸');
-            message.react('🍺');
-            message.react('🍻');
-            message.react('🍸');
-        });
-    }
-    if (message.content.toLowerCase().search(/verre/g) > -1 && (message.author.id !== bot.user.id)) {
+    if (
+        message.content.toLowerCase().search(/alco+l/g) > -1 && (message.author.id !== bot.user.id)
+    || message.content.toLowerCase().search(/bière/g) > -1 && (message.author.id !== bot.user.id)
+    || message.content.toLowerCase().search(/biere/g) > -1 && (message.author.id !== bot.user.id)
+    || message.content.toLowerCase().search(/vodka/g) > -1 && (message.author.id !== bot.user.id)
+    || message.content.toLowerCase().search(/ vin/g) > -1 && (message.author.id !== bot.user.id)
+    || message.content.toLowerCase().search(/rhum/g) > -1 && (message.author.id !== bot.user.id)
+    || message.content.toLowerCase().search(/ bu/g) > -1 && (message.author.id !== bot.user.id)
+    || message.content.toLowerCase().search(/gin/g) > -1 && (message.author.id !== bot.user.id)
+    || message.content.toLowerCase().search(/ricard/g) > -1 && (message.author.id !== bot.user.id)
+    || message.content.toLowerCase().search(/boire/g) > -1 && (message.author.id !== bot.user.id)) {
         message.channel.send(`ALCOOOL !`).then(mess => {
             mess.react('🍺');
             mess.react('🍻');
