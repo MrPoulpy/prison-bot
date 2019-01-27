@@ -32,13 +32,14 @@ bot.on('ready', function(evt) {
 
 
 bot.on('message', message => {
-
     var checks = message.author.id !== bot.id; //&& msg.content.substring(0, 2) === 'c!';
     var is_command = message.content.startsWith('!limite!');
     var is_in_main = message.channel.type === 'text';
 
     if (checks && is_command && is_in_main) {
         var command = message.content.substring(2, message.content.length).split(' ');
+        console.log(message);
+        console.log(command);
         iterateCommands(message, command);
     };
 
