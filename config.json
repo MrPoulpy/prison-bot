@@ -1,0 +1,16 @@
+{
+  "directories": {
+    "prompts": "/cards/prompts",
+    "responses": "/cards/responses",
+    "witty-quotes": "witty-quotes.txt",
+    "presets": "presets.json"
+  },
+
+  "active-channel": "",
+  "chat-channel": "",
+
+  "roles": {
+    "player": "Limite Limite (Joueurs)",
+    "spectator": "Limite Limite (Spectateurs)"
+  }
+}
