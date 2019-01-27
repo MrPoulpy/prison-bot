@@ -195,7 +195,7 @@ bot.on('message', message => {
                 let random = (Math.floor(Math.random() * db.dicks.length));
                 message.channel.send(db.dicks[random].drawing);
                 break;
-            case "citation" :
+            case "film" :
                 let randomCitation = (Math.floor(Math.random() * db.citations.length));
                 message.channel.send(`${db.citations[randomCitation].text}
                         *${db.citations[randomCitation].film}*`);
