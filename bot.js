@@ -529,7 +529,7 @@ async function blockMain () {
 
 async function unblockMain () {
     var channel = bot.channels.get(config["active-channel"]);
-    var role = channel.guild.roles.find(x => x.name === "@everyone");``
+    var role = channel.guild.roles.find(x => x.name === "@everyone");
 
     var perms = {
         READ_MESSAGES: true,
