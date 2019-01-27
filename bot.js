@@ -27,7 +27,7 @@ bot.on('ready', function(evt) {
         game: {name: 'Limite Limite', type: 'PLAYING'}
     });
 
-    reset();f
+    reset();
 });
 
 
