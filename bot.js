@@ -442,10 +442,11 @@ async function iterateCommands (msg, command) {
             if (_local.lobby.status !== 'waiting') {
                 msg.channel.send("Tu ne peux pas lancer de partie maintenant.");
                 return null;
-            } else if (_local.lobby.players.length < 3) {
-                msg.channel.send("Je ne peux pas lancer de partie avec moins de 3 joueurs");
-                return null;
-            };
+            }
+            // } else if (_local.lobby.players.length < 3) {
+            //     msg.channel.send("Je ne peux pas lancer de partie avec moins de 3 joueurs");
+            //     return null;
+            // };
             msg.channel.send("J'essaye de lancer la partie.");
             startGame();
             msg.channel.send("Partie lancée. Enjoyez vos daronnes.");
