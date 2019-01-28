@@ -279,7 +279,7 @@ bot.on("message", message => {
                                   mess.guild.roles.find(x => x.name === rolePrison)
                               );
                       });
-              } else if (votedRoles !== undefined) {
+              } else if (votedRole !== undefined) {
                   message.channel
                       .send(`Le shérif vous libère tous. Votez pour moi !`)
                       .then(mess => {
