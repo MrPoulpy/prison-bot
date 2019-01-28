@@ -59,7 +59,9 @@ bot.on("message", message => {
       message.author.id !== bot.user.id) ||
     (message.content.toLowerCase().search(/rhum/g) > -1 &&
       message.author.id !== bot.user.id) ||
-    (message.content.toLowerCase().search(/ bu/g) > -1 &&
+    (message.content.toLowerCase().search(/apéro/g) > -1 &&
+      message.author.id !== bot.user.id) ||
+      (message.content.toLowerCase().search(/apero/g) > -1 &&
       message.author.id !== bot.user.id) ||
     (message.content.toLowerCase().search(/gin/g) > -1 &&
       message.author.id !== bot.user.id) ||
