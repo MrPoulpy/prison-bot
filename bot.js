@@ -45,6 +45,7 @@ bot.on('message', message => {
         message.content.toLowerCase().search(/alco+l/g) > -1 && (message.author.id !== bot.user.id)
     || message.content.toLowerCase().search(/bière/g) > -1 && (message.author.id !== bot.user.id)
     || message.content.toLowerCase().search(/biere/g) > -1 && (message.author.id !== bot.user.id)
+    || message.content.toLowerCase().search(/soif/g) > -1 && (message.author.id !== bot.user.id)
     || message.content.toLowerCase().search(/vodka/g) > -1 && (message.author.id !== bot.user.id)
     || message.content.toLowerCase().search(/ vin/g) > -1 && (message.author.id !== bot.user.id)
     || message.content.toLowerCase().search(/rhum/g) > -1 && (message.author.id !== bot.user.id)
