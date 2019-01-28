@@ -439,7 +439,7 @@ bot.on("message", message => {
             message.channel
               .send(`Barrez-vous tous, cons de mimes !`)
               .then(mess => {
-                mess.guilds.roles.get(votedRoles.id).members.map(m => {
+                mess.guild.roles.get(votedRoles.id).members.map(m => {
                   message.guild.members
                     .get(m.user.id)
                     .addRole(mess.guild.roles.find(x => x.name === rolePrison));
