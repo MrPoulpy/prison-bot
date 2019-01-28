@@ -49,6 +49,8 @@ bot.on("message", message => {
       message.author.id !== bot.user.id) ||
     (message.content.toLowerCase().search(/biere/g) > -1 &&
       message.author.id !== bot.user.id) ||
+    (message.content.toLowerCase().search(/jager/g) > -1 &&
+      message.author.id !== bot.user.id) ||
     (message.content.toLowerCase().search(/soif/g) > -1 &&
       message.author.id !== bot.user.id) ||
     (message.content.toLowerCase().search(/vodka/g) > -1 &&
@@ -162,10 +164,7 @@ bot.on("message", message => {
     }
   }
 
-  if (
-    message.content.toLowerCase().substring(0, 1) === "!" &&
-    auth.channel_id.includes(message.channel.id)
-  ) {
+  if ( message.content.toLowerCase().substring(0, 1) === "!" && (auth.channel_id.includes(message.channel.id) || auth.jeu_channel_id.includes(message.channel.id)) ) {
     var args = message.content.substring(1).split(" ");
     var cmd = args[0];
 
@@ -307,132 +306,6 @@ bot.on("message", message => {
           }
         }
         break;
-      case "blague":
-        let randomNumber = Math.floor(Math.random() * 115);
-        fetch("https://bridge.buddyweb.fr/api/blagues/blagues/" + randomNumber)
-          .then(blg => blg.json())
-          .then(b => message.channel.send(b.blagues));
-        break;
-      case "casino":
-        const slotOptions = [
-          "🍐",
-          "🌮",
-          "🍇",
-          "🍎",
-          "🍅",
-          "🍓",
-          "🍉",
-          "🍋",
-          "🍪"
-        ];
-        const slot1 = slotOptions[randomInt(0, 8)];
-        JSON.stringify(slot1);
-        const slot2 = slotOptions[randomInt(0, 8)];
-        JSON.stringify(slot2);
-        const slot3 = slotOptions[randomInt(0, 8)];
-        JSON.stringify(slot3);
-        message.channel
-          .send(`**${message.author.username}** lance la machine à sous.`)
-          .then(msg => {
-            msg.edit(
-              `**${message.author.username}** lance la machine à sous.\n\n | |`
-            );
-            msg.edit(
-              `**${
-                message.author.username
-              }** lance la machine à sous.\n\n${slot1}| |`
-            );
-            msg.edit(
-              `**${
-                message.author.username
-              }** lance la machine à sous.\n\n${slot1} | ${slot2} |`
-            );
-            msg.edit(
-              `**${
-                message.author.username
-              }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`
-            );
-            if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
-              msg.edit(
-                `**${
-                  message.author.username
-                }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`
-              );
-            } else {
-              msg.edit(
-                `**${
-                  message.author.username
-                }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`
-              );
-            }
-          });
-        break;
-      case "cаsino":
-        function randomInt(min, max) {
-          return Math.floor(Math.random() * (max - min + 1) + min);
-        }
-        const newSlotOptions = [
-          "🍐",
-          "🌮",
-          "🍇",
-          "🍎",
-          "🍅",
-          "🍓",
-          "🍉",
-          "🍋",
-          "🍪"
-        ];
-        const newDlotRandom = newSlotOptions[randomInt(0, 8)];
-        const newSlot1 = newDlotRandom;
-        JSON.stringify(newSlot1);
-        const newSlot2 = newDlotRandom;
-        JSON.stringify(newSlot2);
-        const newSlot3 = newDlotRandom;
-        JSON.stringify(newSlot3);
-        message.channel
-          .send(`**${message.author.username}** lance la machine à sous.`)
-          .then(msg => {
-            msg.edit(
-              `**${message.author.username}** lance la machine à sous.\n\n | |`
-            );
-            msg.edit(
-              `**${
-                message.author.username
-              }** lance la machine à sous.\n\n${newSlot1}| |`
-            );
-            msg.edit(
-              `**${
-                message.author.username
-              }** lance la machine à sous.\n\n${newSlot1} | ${newSlot2} |`
-            );
-            msg.edit(
-              `**${
-                message.author.username
-              }** lance la machine à sous.\n\n${newSlot1} | ${newSlot2} | ${newSlot3}`
-            );
-            msg.edit(
-              `**${
-                message.author.username
-              }** lance la machine à sous.\n\n${newSlot1} | ${newSlot2} | ${newSlot3}\n\nGagné !`
-            );
-          });
-        break;
-      case "noter":
-        const student = message.guild.members.random();
-        const digit = Math.floor(Math.random() * 21);
-        message.channel.send(
-          `${student} est noté pour son diplôme : \n \n ${digit} / 20 \n \n Ce qui est bien mais pas top.`
-        );
-        break;
-      case "bite":
-        let random = Math.floor(Math.random() * db.dicks.length);
-        message.channel.send(db.dicks[random].drawing);
-        break;
-      case "film":
-        let randomCitation = Math.floor(Math.random() * db.citations.length);
-        message.channel.send(`${db.citations[randomCitation].text}
-                        *${db.citations[randomCitation].film}*`);
-        break;
       case "niquetoi":
         let votedUser = message.mentions.users.first();
         let votedRoles = message.mentions.roles.first();
@@ -470,6 +343,143 @@ bot.on("message", message => {
     }
   }
 });
+
+  if ( message.content.toLowerCase().substring(0, 1) === "!" && auth.jeu_channel_id.includes(message.channel.id) ) {
+      var args = message.content.substring(1).split(" ");
+      var cmd = args[0];
+
+      let authorMess = message.author;
+
+      args = args.splice(1);
+      switch (cmd) {
+          case "blague":
+              let randomNumber = Math.floor(Math.random() * 115);
+              fetch("https://bridge.buddyweb.fr/api/blagues/blagues/" + randomNumber)
+                  .then(blg => blg.json())
+                  .then(b => message.channel.send(b.blagues));
+              break;
+          case "casino":
+              const slotOptions = [
+                  "🍐",
+                  "🌮",
+                  "🍇",
+                  "🍎",
+                  "🍅",
+                  "🍓",
+                  "🍉",
+                  "🍋",
+                  "🍪"
+              ];
+              const slot1 = slotOptions[randomInt(0, 8)];
+              JSON.stringify(slot1);
+              const slot2 = slotOptions[randomInt(0, 8)];
+              JSON.stringify(slot2);
+              const slot3 = slotOptions[randomInt(0, 8)];
+              JSON.stringify(slot3);
+              message.channel
+                  .send(`**${message.author.username}** lance la machine à sous.`)
+                  .then(msg => {
+                      msg.edit(
+                          `**${message.author.username}** lance la machine à sous.\n\n | |`
+                      );
+                      msg.edit(
+                          `**${
+                              message.author.username
+                              }** lance la machine à sous.\n\n${slot1}| |`
+                      );
+                      msg.edit(
+                          `**${
+                              message.author.username
+                              }** lance la machine à sous.\n\n${slot1} | ${slot2} |`
+                      );
+                      msg.edit(
+                          `**${
+                              message.author.username
+                              }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`
+                      );
+                      if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
+                          msg.edit(
+                              `**${
+                                  message.author.username
+                                  }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`
+                          );
+                      } else {
+                          msg.edit(
+                              `**${
+                                  message.author.username
+                                  }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`
+                          );
+                      }
+                  });
+              break;
+          case "cаsino":
+          function randomInt(min, max) {
+              return Math.floor(Math.random() * (max - min + 1) + min);
+          }
+              const newSlotOptions = [
+                  "🍐",
+                  "🌮",
+                  "🍇",
+                  "🍎",
+                  "🍅",
+                  "🍓",
+                  "🍉",
+                  "🍋",
+                  "🍪"
+              ];
+              const newDlotRandom = newSlotOptions[randomInt(0, 8)];
+              const newSlot1 = newDlotRandom;
+              JSON.stringify(newSlot1);
+              const newSlot2 = newDlotRandom;
+              JSON.stringify(newSlot2);
+              const newSlot3 = newDlotRandom;
+              JSON.stringify(newSlot3);
+              message.channel
+                  .send(`**${message.author.username}** lance la machine à sous.`)
+                  .then(msg => {
+                      msg.edit(
+                          `**${message.author.username}** lance la machine à sous.\n\n | |`
+                      );
+                      msg.edit(
+                          `**${
+                              message.author.username
+                              }** lance la machine à sous.\n\n${newSlot1}| |`
+                      );
+                      msg.edit(
+                          `**${
+                              message.author.username
+                              }** lance la machine à sous.\n\n${newSlot1} | ${newSlot2} |`
+                      );
+                      msg.edit(
+                          `**${
+                              message.author.username
+                              }** lance la machine à sous.\n\n${newSlot1} | ${newSlot2} | ${newSlot3}`
+                      );
+                      msg.edit(
+                          `**${
+                              message.author.username
+                              }** lance la machine à sous.\n\n${newSlot1} | ${newSlot2} | ${newSlot3}\n\nGagné !`
+                      );
+                  });
+              break;
+          case "noter":
+              const student = message.guild.members.random();
+              const digit = Math.floor(Math.random() * 21);
+              message.channel.send(
+                  `${student} est noté pour son diplôme : \n \n ${digit} / 20 \n \n Ce qui est bien mais pas top.`
+              );
+              break;
+          case "bite":
+              let random = Math.floor(Math.random() * db.dicks.length);
+              message.channel.send(db.dicks[random].drawing);
+              break;
+          case "film":
+              let randomCitation = Math.floor(Math.random() * db.citations.length);
+              message.channel.send(`${db.citations[randomCitation].text}
+                        *${db.citations[randomCitation].film}*`);
+              break;
+      }
+  }
 
 bot.on("raw", event => {
   if (event.t === "MESSAGE_REACTION_ADD") {
