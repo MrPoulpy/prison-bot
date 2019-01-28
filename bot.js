@@ -283,7 +283,7 @@ bot.on("message", message => {
                   message.channel
                       .send(`Le shérif vous libère tous. Votez pour moi !`)
                       .then(mess => {
-                          mess.guild.roles.get(votedRoles.id).members.map(m => {
+                          mess.guild.roles.get(votedRole.id).members.map(m => {
                               message.guild.members
                                   .get(m.user.id)
                                   .removeRole(mess.guild.roles.find(x => x.name === rolePrison));
