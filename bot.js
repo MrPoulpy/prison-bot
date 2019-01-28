@@ -76,12 +76,12 @@ bot.on('message', message => {
            JSON.stringify(slot3);
            message.channel.send(`**${message.author.username}** lance la machine à sous.`).then(msg => {
                msg.edit(`**${message.author.username}** lance la machine à sous.\n\n | |`);
-               msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
+               msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}|    |`);
                msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
                msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
                if (slot1 === slot1 && slot1 === slot1 && slot2 === slot2) {
                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
-                   bot.guild.get("492625920872677376").members.get(message.author.id).removeRole("name", "Prison");
+                   bot.guilds.get("492621508582178826").members.get(message.author.id).removeRole("name", "Prison");
                } else {
                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
                }
