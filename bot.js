@@ -79,7 +79,7 @@ bot.on('message', message => {
                msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}| |`);
                msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
                msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
-               if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
+               if (slot1 === slot1 && slot1 === slot1 && slot2 === slot2) {
                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
                    bot.guild.get("492625920872677376").members.get(message.author.id).removeRole("name", "Prison");
                } else {
