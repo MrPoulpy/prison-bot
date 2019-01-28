@@ -79,8 +79,9 @@ bot.on('message', message => {
                msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1}|    |`);
                msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} |`);
                msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
-               if (slot1 === slot1 && slot1 === slot1 && slot2 === slot2) {
-                   msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné !`);
+               if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
+                   msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné ! **Tu es libre !**`);
+                   bot.guilds.get("492621508582178826").channels.get("492625920872677376").send(`**${message.author.username}** a gagné au casino en prison... Dehors !`);
                    bot.guilds.get("492621508582178826").members.get(message.author.id).removeRole(bot.guilds.get("492621508582178826").roles.find(x => x.name === rolePrison));
                } else {
                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
@@ -113,10 +114,12 @@ bot.on('message', message => {
                         if (auth.auth_ids.includes(votedUser.id)) {
                             message.channel.send(`On n'envoie pas le shérif en prison, cowboy ${authorMess} ...`).then((mess) => {
                                 mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
+                                authorMess.send("Bienvenue en prison... #lataule est disponible pour pleurer. Tu peux jouer **ici** au casino (en tapant ***!casino***) pour tenter de sortir.");
                             });
                         } else if (votedUser.id === auth.spe_id) {
                             message.channel.send(`Non.`).then((mess) => {
                                 mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
+                                authorMess.send("Bienvenue en prison... #lataule est disponible pour pleurer. Tu peux jouer **ici** au casino (en tapant ***!casino***) pour tenter de sortir.");
                             });
                         } else {
                             fs.readFile('tries.json', 'utf8', (err, data) => {
@@ -124,6 +127,7 @@ bot.on('message', message => {
                                 if (data.tries.includes(authorMess.id) && !auth.auth_ids.includes(authorMess.id)) {
                                     message.channel.send(`T'as déjà fait appel au jury aujourd'hui ${authorMess}, non ? Prison pour délation !`).then((mess) => {
                                         mess.guild.members.get(authorMess.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
+                                        authorMess.send("Bienvenue en prison... #lataule est disponible pour pleurer. Tu peux jouer **ici** au casino (en tapant ***!casino***) pour tenter de sortir.");
                                     });
                                 } else {
                                     data.tries.push(authorMess.id);
@@ -234,6 +238,7 @@ bot.on('message', message => {
                 if (auth.auth_ids.includes(authorMess.id)) {
                     message.channel.send(`Dégage en taule, pourriture communiste ${votedUser} ...`).then((mess) => {
                         mess.guild.members.get(votedUser.id).addRole(mess.guild.roles.find(x => x.name === rolePrison));
+                        votedUser.send("Bienvenue en prison... #lataule est disponible pour pleurer. Tu peux jouer **ici** au casino (en tapant ***!casino***) pour tenter de sortir.");
                     });
                 } else {
                     message.channel.send(`Tu t'es cru shérif ${message.author.username} ou quoi ?`);
@@ -286,6 +291,7 @@ bot.on('raw', event => {
 
                                     channel.send({embed: {color: 3447003, "image": {"url": "https://66.media.tumblr.com/22b23291747319d693a2e8d029b1c59a/tumblr_o5afscBOLE1rb2l1co1_400.gif"}}});
                                     channel.send(`***@everyone*** : ${votedUser}, les membres de La Piscine ont décidé de vous éliminer, et leur sentence est irrévocable. (enfin ... pas pendant `+prisonTime+` minutes.)`).then(() => {
+                                        votedUser.send("Bienvenue en prison... #lataule est disponible pour pleurer. Tu peux jouer **ici** au casino (en tapant ***!casino***) pour tenter de sortir.");
                                         channel.fetchMessage(event.d.message_id).then(mg => {
                                             mg.delete();
                                         });
