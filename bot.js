@@ -22,12 +22,12 @@ bot.login(auth.token);
 // Logger à la connexion
 bot.on('ready', function(evt) {
     logger.info('Connecté');
-    bot.user.setPresence({
-        status: 'online',
-        game: {name: 'Limite Limite', type: 'PLAYING'}
-    });
-
-    reset();
+    // bot.user.setPresence({
+    //     status: 'online',
+    //     game: {name: 'Limite Limite', type: 'PLAYING'}
+    // });
+    //
+    // reset();
 });
 
 
@@ -62,7 +62,7 @@ bot.on('message', message => {
         });
     }
 
-    if(message.content.toLocaleLowerCase() === "!casino" && message.channel.type === "DMChannel") {
+    if (message.content.toLocaleLowerCase() === "!casino" && message.channel.type === "DMChannel") {
         message.channel.send('ALCOOL');
     }
 
@@ -857,7 +857,7 @@ async function czarPick (czar) {
 
         _local.temp.timeoutKick = setTimeout(function() {
             removePlayer(czar);
-            channel.send("**" + fetchUserX(czar) + " a été banni du jeu pour être un flemmard trop lent à choisir !** *F*.");
+            channel.send("**" + fetchUserX(czar) + " a été banni du jeu pour être un flemmard trop lent à choisir !**.");
             clearReactionsAndEdit();
             game.kick(czar);
             verifyWin();
