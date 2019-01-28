@@ -267,16 +267,29 @@ bot.on("message", message => {
           );
         } else {
           let votedUser = message.mentions.users.first();
+          let votedRole = message.mentions.roles.first();
           if (auth.auth_ids.includes(authorMess.id)) {
-            message.channel
-              .send(`Le shérif t'a libéré, cowboy ${votedUser} ...`)
-              .then(mess => {
-                mess.guild.members
-                  .get(votedUser.id)
-                  .removeRole(
-                    mess.guild.roles.find(x => x.name === rolePrison)
-                  );
-              });
+              if (votedUser !== undefined) {
+                  message.channel
+                      .send(`Le shérif t'a libéré, cowboy ${votedUser} ...`)
+                      .then(mess => {
+                          mess.guild.members
+                              .get(votedUser.id)
+                              .removeRole(
+                                  mess.guild.roles.find(x => x.name === rolePrison)
+                              );
+                      });
+              } else if (votedRoles !== undefined) {
+                  message.channel
+                      .send(`Le shérif vous libère tous. Votez pour moi !`)
+                      .then(mess => {
+                          mess.guild.roles.get(votedRoles.id).members.map(m => {
+                              message.guild.members
+                                  .get(m.user.id)
+                                  .removeRole(mess.guild.roles.find(x => x.name === rolePrison));
+                          });
+                      });
+              }
           } else {
             message.channel
               .send(
