@@ -342,9 +342,8 @@ bot.on("message", message => {
         }
     }
   }
-});
 
-  if ( message.content.toLowerCase().substring(0, 1) === "!" && auth.jeu_channel_id.includes(message.channel.id) ) {
+  if (message.content.toLowerCase().substring(0, 1) === "!" && auth.jeu_channel_id.includes(message.channel.id) ) {
       var args = message.content.substring(1).split(" ");
       var cmd = args[0];
 
@@ -480,6 +479,8 @@ bot.on("message", message => {
               break;
       }
   }
+
+});
 
 bot.on("raw", event => {
   if (event.t === "MESSAGE_REACTION_ADD") {
