@@ -290,7 +290,7 @@ bot.on('raw', event => {
                                     }, prisonTime*60000);
 
                                     channel.send({embed: {color: 3447003, "image": {"url": "https://66.media.tumblr.com/22b23291747319d693a2e8d029b1c59a/tumblr_o5afscBOLE1rb2l1co1_400.gif"}}});
-                                    channel.send(`***@everyone*** : ${votedUser}, les membres de La Piscine ont décidé de vous éliminer, et leur sentence est irrévocable. (enfin ... pas pendant `+prisonTime+` minutes.)`).then(() => {
+                                    channel.send(`***@everyone*** : ${votedUser}, les membres de La Piscine ont décidé de vous éliminer, et leur sentence est irrévocable. (enfin ... pendant `+prisonTime+` minutes.)`).then(() => {
                                         votedUser.send("Bienvenue en prison... #lataule est disponible pour pleurer. Tu peux jouer **ici** au casino (en tapant ***!casino***) pour tenter de sortir.");
                                         channel.fetchMessage(event.d.message_id).then(mg => {
                                             mg.delete();
