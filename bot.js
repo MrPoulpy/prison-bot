@@ -81,7 +81,7 @@ bot.on('message', message => {
                msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`);
                if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné ! **Tu es libre !**`);
-                   bot.guilds.get("492621508582178826").channels.get("492625920872677376").send(`**${message.author.username}** a gagné au casino en prison... Dehors !`);
+                   bot.guilds.get("492621508582178826").channels.get("492625920872677376").send(`\`***@everyone*** : **${message.author.username}** a gagné au casino en prison... Dehors !`);
                    bot.guilds.get("492621508582178826").members.get(message.author.id).removeRole(bot.guilds.get("492621508582178826").roles.find(x => x.name === rolePrison));
                } else {
                    msg.edit(`**${message.author.username}** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`);
