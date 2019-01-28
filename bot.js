@@ -62,6 +62,10 @@ bot.on('message', message => {
         });
     }
 
+    if(message.content.toLocaleLowerCase() === "!casino" && message.channel.type === "DMChannel") {
+        message.channel.send('ALCOOL');
+    }
+
     if (message.content.toLowerCase().substring(0, 1) === '!' && auth.channel_id.includes(message.channel.id)) {
         var args = message.content.substring(1).split(' ');
         var cmd = args[0];
@@ -420,7 +424,6 @@ bot.on("messageReactionAdd", function (mr, user) {
         return null;
     };
 
-    // Search through reactables
     for (var i = 0; i < _local.reactables.length; i++) {
         if (_local.reactables[i].message.id === message.id && _local.reactables[i].emote === mr.emoji.toString()) {
             _local.reactables[i].action(mr, user);
@@ -1045,3 +1048,7 @@ function wittyQuote () {
 
     return wits[Math.floor(Math.random() * wits.length)];
 };
+
+function adventOfCode(user) {
+    user.send({embed: {color: 3447003, title: "Bienvenue en taule !", description: "Heureusement, tu peux sortir plus tôt. Joue au casino. Si tu gagnes, tu sors."}}).then();
+}
