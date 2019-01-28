@@ -62,7 +62,7 @@ bot.on('message', message => {
         });
     }
 
-    if (message.content.toLocaleLowerCase() === "!casino" && message.channel.type === "dm") {
+    if (message.content.toLocaleLowerCase() === "!casino") {
        if (bot.guilds.get("492621508582178826").members.get(message.author.id).roles.find("name", "Prison")) {
            const slotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
            const slot1 = slotOptions[randomInt(0, 8)];
