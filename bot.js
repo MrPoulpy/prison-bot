@@ -64,6 +64,9 @@ bot.on('message', message => {
 
     if (message.content.toLocaleLowerCase() === "!casino" && message.channel.type === "dm") {
        if (bot.guilds.get("492621508582178826").members.get(message.author.id).roles.find("name", "Prison")) {
+           function randomInt(min, max) {
+               return Math.floor(Math.random() * (max - min + 1) + min);
+           }
            const slotOptions = ['🍐', '🌮', '🍇', '🍎', '🍅', '🍓', '🍉', '🍋', '🍪'];
            const slot1 = slotOptions[randomInt(0, 8)];
            JSON.stringify(slot1);
