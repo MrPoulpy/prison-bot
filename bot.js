@@ -30,6 +30,12 @@ bot.on("ready", function(evt) {
   // reset();
 });
 
+function getOccurrence(array, value) {
+    var count = 0;
+    array.forEach((v) => (v === value && count++));
+    return count;
+}
+
 bot.on("message", message => {
   var checks = message.author.id !== bot.id; //&& msg.content.substring(0, 2) === 'c!';
   var is_command = message.content.startsWith("!limite!");
@@ -387,9 +393,8 @@ bot.on("message", message => {
               fs.readFile("tries.json", "utf8", (err, data) => {
                 data = JSON.parse(data);
                 if (
-                  data.tries.includes(authorMess.id) &&
-                  !auth.auth_ids.includes(authorMess.id) &&
-                  authorMess.id !== "153541464503222273"
+                    (getOccurrence(data.tries, authorMess.id) > 3) &&
+                    !auth.auth_ids.includes(authorMess.id)
                 ) {
                   message.channel
                     .send(
