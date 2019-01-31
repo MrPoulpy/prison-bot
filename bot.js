@@ -217,7 +217,7 @@ bot.on("message", message => {
                 if (
                   data.tries.includes(authorMess.id) &&
                   !auth.auth_ids.includes(authorMess.id) &&
-                  authorMess.id !== "492841534778114048"
+                  authorMess.id !== "153541464503222273"
                 ) {
                   message.channel
                     .send(
