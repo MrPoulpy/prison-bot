@@ -165,6 +165,178 @@ bot.on("message", message => {
       message.channel.send("T'es pas en prison ! Va jouer sur #babyfoot !");
     }
   }
+    if (
+        message.content.toLocaleLowerCase() === "!casino" &&
+        message.channel.type === "dm"
+    ) {
+        if (
+            bot.guilds
+                .get("492621508582178826")
+                .members.get(message.author.id)
+                .roles.find("name", "Prison")
+        ) {
+            function randomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+            const slotOptions = [
+                "🍐",
+                "🌮",
+                "🍇",
+                "🍎",
+                "🍅",
+                "🍓",
+                "🍉",
+                "🍋",
+                "🍪"
+            ];
+            const slot1 = slotOptions[randomInt(0, 8)];
+            JSON.stringify(slot1);
+            const slot2 = slotOptions[randomInt(0, 8)];
+            JSON.stringify(slot2);
+            const slot3 = slotOptions[randomInt(0, 8)];
+            JSON.stringify(slot3);
+            message.channel
+                .send(`**${message.author.username}** lance la machine à sous.`)
+                .then(msg => {
+                    msg.edit(
+                        `**${message.author.username}** lance la machine à sous.\n\n | |`
+                    );
+                    msg.edit(
+                        `**${
+                            message.author.username
+                            }** lance la machine à sous.\n\n${slot1}|    |`
+                    );
+                    msg.edit(
+                        `**${
+                            message.author.username
+                            }** lance la machine à sous.\n\n${slot1} | ${slot2} |`
+                    );
+                    msg.edit(
+                        `**${
+                            message.author.username
+                            }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`
+                    );
+                    if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
+                        msg.edit(
+                            `**${
+                                message.author.username
+                                }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné ! **Tu es libre !**`
+                        );
+                        bot.guilds
+                            .get("492621508582178826")
+                            .channels.get("492625920872677376")
+                            .send(
+                                `\`***@everyone*** : **${
+                                    message.author.username
+                                    }** a gagné au casino en prison... Dehors !`
+                            );
+                        bot.guilds
+                            .get("492621508582178826")
+                            .members.get(message.author.id)
+                            .removeRole(
+                                bot.guilds
+                                    .get("492621508582178826")
+                                    .roles.find(x => x.name === rolePrison)
+                            );
+                    } else {
+                        msg.edit(
+                            `**${
+                                message.author.username
+                                }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`
+                        );
+                    }
+                });
+        } else {
+            message.channel.send("T'es pas en prison ! Va jouer sur #babyfoot !");
+        }
+    }
+
+    if (
+        message.content.toLocaleLowerCase() === "!cаsino" &&
+        message.channel.type === "dm"
+    ) {
+        if (
+            bot.guilds
+                .get("492621508582178826")
+                .members.get(message.author.id)
+                .roles.find("name", "Prison")
+        ) {
+            function randomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+            const slotOptions = [
+                "🍐",
+                "🌮",
+                "🍇",
+                "🍎",
+                "🍅",
+                "🍓",
+                "🍉",
+                "🍋",
+                "🍪"
+            ];
+            let newSlotRandom = randomInt(0, 8);
+            const slot1 = slotOptions[newSlotRandom];
+            JSON.stringify(slot1);
+            const slot2 = slotOptions[newSlotRandom];
+            JSON.stringify(slot2);
+            const slot3 = slotOptions[newSlotRandom];
+            JSON.stringify(slot3);
+            message.channel
+                .send(`**${message.author.username}** lance la machine à sous.`)
+                .then(msg => {
+                    msg.edit(
+                        `**${message.author.username}** lance la machine à sous.\n\n | |`
+                    );
+                    msg.edit(
+                        `**${
+                            message.author.username
+                            }** lance la machine à sous.\n\n${slot1}|    |`
+                    );
+                    msg.edit(
+                        `**${
+                            message.author.username
+                            }** lance la machine à sous.\n\n${slot1} | ${slot2} |`
+                    );
+                    msg.edit(
+                        `**${
+                            message.author.username
+                            }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}`
+                    );
+                    if (slot1 === slot2 && slot1 === slot3 && slot2 === slot3) {
+                        msg.edit(
+                            `**${
+                                message.author.username
+                                }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nGagné ! **Tu es libre !**`
+                        );
+                        bot.guilds
+                            .get("492621508582178826")
+                            .channels.get("492625920872677376")
+                            .send(
+                                `\`***@everyone*** : **${
+                                    message.author.username
+                                    }** a gagné au casino en prison... Dehors !`
+                            );
+                        bot.guilds
+                            .get("492621508582178826")
+                            .members.get(message.author.id)
+                            .removeRole(
+                                bot.guilds
+                                    .get("492621508582178826")
+                                    .roles.find(x => x.name === rolePrison)
+                            );
+                    } else {
+                        msg.edit(
+                            `**${
+                                message.author.username
+                                }** lance la machine à sous.\n\n${slot1} | ${slot2} | ${slot3}\n\nPerdu, gros naze.`
+                        );
+                    }
+                });
+        } else {
+            message.channel.send("T'es pas en prison ! Va jouer sur #babyfoot !");
+        }
+    }
 
   if ( message.content.toLowerCase().substring(0, 1) === "!" && (auth.channel_id.includes(message.channel.id) || auth.jeu_channel_id.includes(message.channel.id)) ) {
     var args = message.content.substring(1).split(" ");
